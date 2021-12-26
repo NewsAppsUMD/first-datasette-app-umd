@@ -1,3 +1,11 @@
+.DS_Store
+.coverage
+*#
+*.pyc
+docs/_build
+house_expenses.db
+Pipfile.lock
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
