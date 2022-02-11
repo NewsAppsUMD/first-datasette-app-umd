@@ -330,3 +330,33 @@ use the `datasette publish heroku` command to publish your app. Replace `firstmi
     $ datasette publish heroku house_expenses.db -n house-expenses-firstmiddlelast
 
 Now wait a minute or two, then visit ``https://house-expenses-firstmiddlelast.herokuapp.com/`` to see your Datasette application.
+
+For Windows 10 users, this step likely will not work - at least, not yet. There is a workaround for publishing on Heroku, but it involves editing local Datasette files. Here's the process:
+
+1. Find the Datasette folder on your system. Depending on where you installed it, it may be in a hidden virtual environment folder. (Use the file explorer. It may need to crank for a while. If you know where it's probably located, check "view hidden items" in file explorer and poke around.)
+2. In the datasette/publish directory, open heroku.py for editing in a text editor. You will need to add the phrase `shell=True` in five locations:
+
+.. code-block:: python
+
+    plugins = [
+        line.split()[0] for line in check_output(["heroku", "plugins"], shell=True).splitlines()
+    ]
+
+    if name:
+        # Check to see if this app already exists
+        list_output = check_output(["heroku", "apps:list", "--json"], shell=True).decode(
+            "utf8"
+        )
+
+    create_output = check_output(cmd, shell=True).decode("utf8")
+
+    call(["heroku", "config:set", "-a", app_name, f"{key}={value}"], shell=True)
+
+    call(
+        ["heroku", "builds:create", "-a", app_name, "--include-vcs-ignore"]
+        + tar_option, shell=True
+    )
+
+3. Run the previous datasette publish command in your shell. If you get an "install heroku builds?" message, hit "y" -- then observe that it maybe didn't work.
+4. Enter heroku plugins:install heroku-builds manually; you should see install activity.
+5. Try the publish command again. Watch the recursive error unfold. If you scroll back up, you should see that your site published even though you get the recursion error.
