@@ -8,7 +8,7 @@ A step-by-step guide to publishing a simple Datasette application.
 
 This tutorial will walk you through the process of building an interactive Datasette application
 from a structured dataset. You will get hands-on experience in every stage of the
-development process  while recording it in Git's version control system. By the end you will have
+development process while recording it in Git's version control system. By the end you will have
 published your work on the World Wide Web.
 
 ******************
@@ -37,138 +37,35 @@ Prelude: Prerequisites
 
 Before you can begin, your computer needs the following tools installed and working.
 
-1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
-2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
-3. Version 3.X of the `Python <https://www.python.org/downloads/>`_ programming language
-4. The `pipenv <https://pipenv.pypa.io/en/latest/>`_ package and virtual environment manager for Python
-5. `Git <https://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
-6. The `wget <https://www.jcchouinard.com/wget/>`_ command-line utility
-7. A `Heroku <https://www.heroku.com/>`_ account for deploying the app, including the Heroku command-line tools
+1. An account at `GitHub.com <http://www.github.com>`_
 
-.. warning::
-
-    Stop and make sure you have all these tools installed and working properly. Otherwise, `you're gonna have a bad time <https://www.youtube.com/watch?v=ynxPshq8ERo>`_.
-
-.. _command-line-prereq:
-
-Command-line interface
-~~~~~~~~~~~~~~~~~~~~~~
-
-Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.
-
-On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_.
-
-On Apple computers, you open the `"Terminal" application <https://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_.
-
-Ubuntu Linux comes with a program of the `same name <https://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
-
-Text editor
------------
-
-A program like Microsoft Word, which can do all sorts of text formatting like
-change the size and color of words, is not what you need. Do not try to use it.
-
-You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_,
-and is therefore capable of editing documents containing Python code, HTML markup and other languages without
-dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
-
-For Windows, I recommend installing `Notepad++ <https://notepad-plus-plus.org/>`_.
-
-For Apple computers, try `Sublime Text <https://www.sublimetext.com/>`_ or `Atom <https://atom.io/>`_.
-
-In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
-
-Python
-~~~~~~
-
-Python is a computer programming language, like many others you may have heard of such as Ruby or PHP or Java. It is free and open source. We'll be installing Python 3 in a virtual environment, so it doesn't matter what version you have installed currently.
-
-For Mac
-^^^^^^^
-
-If you are using Mac OSX, Python version 2.7 is probably already installed, but we'll be using Python 3. To install that, we'll be using `Homebrew <https://docs.python-guide.org/starting/install3/osx/#install3-osx>`_.
-
-To install Python via Homebrew, you can run the following code:
-
-.. code-block:: bash
-
-    $ brew install python
-
-.. note::
-
-    You'll note that the example above begins with a "$". You do not need to type this. It is only a generic symbol
-    commonly used by geeks to indicate a piece of code should be run from the command line. On Windows, this prompt could even look quite different, likely starting with a phrase like ``C:\``.
-
-You should see something like this after you hit enter:
-
-.. code-block:: bash
-
-    $ python -V
-    Python 3.9.7
-
-
-For Windows
-^^^^^^^^^^^
-
-Windows people should follow the instructions `here <https://docs.python-guide.org/starting/install3/win/#install3-windows>`_.
-
-.. _command-line-pipenv:
-
-pipenv
-~~~~~~~~~~~~~~~~~~
-
-The `pipenv package manager <https://pipenv.pypa.io/>`_ makes it easy to install open-source libraries that expand what you're able to do with Python. Later, we will use it to install everything needed to create a working web application.
-
-Verify pipenv is installed with the following command:
-
-.. code-block:: bash
-
-    $ pipenv -v
-
-If you get and error, that means you don't have pipenv installed. You can get it by following `these instructions <https://pipenv.pypa.io/en/latest/install/#pragmatic-installation-of-pipenv>`_.
+Seriously, that's it. Well, and a browser.
 
 Git and GitHub
 --------------
 
-`Git <http://git-scm.com/>`_ is a version control program for saving the changes you make to files over time. This is useful when you're working on your own, but quickly becomes essential with large software projects when you work with other developers.
-
 `GitHub <https://github.com/>`_ is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later.
 
-GitHub offers helpful guides for installing Git for `Windows <https://help.github.com/articles/set-up-git#platform-windows>`_, `Macs <https://help.github.com/articles/set-up-git#platform-mac>`_ and `Linux <https://help.github.com/articles/set-up-git#platform-linux>`_.
-
-You can verify it's installed from your command line like so:
-
-.. code-block:: bash
-
-    $ git --version
-
-Once that's done, you should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
+You should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
 
 .. _activate:
 
-****************
-Act 1: Hello Git
-****************
+***********************
+Act 1: Hello Codespaces
+***********************
 
-Start at our first-news-app directory.
+Start at the `GitHub URL for this repository <https://github.com/dwillis/first-datasette-app-umd>`_
+
+Click the green "Use this template" button and choose "Open in a codespace". You should see something like this:
+
+.. image:: /_static/codespaces.png
+
+The browser is divided into three sections: on the left is a file explorer, listing all of the files in this repository. If you click on `README.md`
+
 
 .. code-block:: bash
 
     $ cd first-datasette-app
-
-Create a new development environment with pipenv, specifying the version of python:
-
-.. code-block:: bash
-
-    # You don't have to type the "$" It's just a generic symbol
-    # geeks use to show they're working on the command line.
-    $ pipenv --python=python3
-
-Then activate it (it's like turning on the power):
-
-.. code-block:: bash
-
-    $ pipenv shell
 
 Create a new Git repository.
 
@@ -257,8 +154,8 @@ Use wget on the command line to download the CSV files, renaming them using the 
 
 .. code-block:: bash
 
-    $ wget https://projects.propublica.org/congress/assets/staffers/2021Q2-house-disburse-summary.csv -O summary.csv
-    $ wget https://projects.propublica.org/congress/assets/staffers/2021Q2-house-disburse-detail.csv -O detail.csv
+    $ wget https://projects.propublica.org/congress/assets/staffers/2022Q3-house-disburse-summary.csv -O summary.csv
+    $ wget https://projects.propublica.org/congress/assets/staffers/2022Q3-house-disburse-detail.csv -O detail.csv
 
 Use sqlite-utils on the command line to load the files into a SQLite database that we'll call house_expenses.db:
 
