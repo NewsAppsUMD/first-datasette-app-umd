@@ -18,8 +18,6 @@ What you will make
 By the end of this lesson, you will publish an interactive database about House of Representatives
 office expenditures. You will do this by using the data published by `ProPublica <https://projects.propublica.org/represent/expenditures>`_.
 
-A working example of what you'll make can be found at `https://house-expenses-umd.herokuapp.com/ <https://house-expenses-umd.herokuapp.com/>`_
-
 .. image:: /_static/datasette.png
 
 You can see `examples of Datasette in action <https://datasette.io/examples>_`, many of which are journalistic in nature or adjacent.
@@ -60,44 +58,27 @@ Click the green "Use this template" button and choose "Open in a codespace". You
 
 .. image:: /_static/codespaces.png
 
-The browser is divided into three sections: on the left is a file explorer, listing all of the files in this repository. If you click on `README.md`
+The browser is divided into three sections: on the left is a file explorer, listing all of the files in this repository. The top right shows whatever file you're currently viewing or editing, defaulting to README.md. The bottom right shows the terminal, where we'll run commands.
 
+The codespace will be connected to your repository in the `the NewsApps organization on GitHub <https://github.com/NewsAppsUMD/>`_.
 
-.. code-block:: bash
-
-    $ cd first-datasette-app
-
-Create a new Git repository.
-
-.. code-block:: bash
-
-    $ git init repo
-
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-datasette-app``. Don't check "Initialize with README." You want to start with a blank repository.
-
-Then connect your local directory to GitHub with the following command.
-
-.. code-block:: bash
-
-    $ git remote add origin https://github.com/<yourusername>/first-datasette-app.git
-
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
-
-.. code-block:: bash
-
-    # Macs or Linux:
-    $ touch README.md
-    # In Windows fire it up in your text editor right away:
-    $ start notepad++ README.md
-
-Open up the README in your text editor and type something in it. Maybe something like:
+Open up the README by clicking on README.md on the left side and type something in it. Maybe change the heading like:
 
 .. code-block:: markdown
 
-    My first Datasette app
-    =================
+    # My First Datasette App
 
-Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
+Make sure to save it. You'll see on the left that there's a yellow "M" next to README.md, meaning you've made some edits. Let's double-check that in the terminal:
+
+.. code-block:: bash
+
+    $ git status
+
+You should see something like this:
+
+.. image:: /_static/git_status.png
+
+If so, we can add and commit it:
 
 .. code-block:: bash
 
@@ -108,14 +89,6 @@ Log its creation with Git's ``commit`` command. You can include a personalized m
 .. code-block:: bash
 
     $ git commit -m "First commit"
-
-If this is your first time using Git, you may be prompted to configure you name and email.
-If so, take the time now. Then run the ``commit`` command above again.
-
-.. code-block:: bash
-
-    $ git config --global user.email "your@email.com"
-    $ git config --global user.name "your name"
 
 Now, finally, push your commit up to GitHub.
 
@@ -129,11 +102,11 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello sqlite-utils
 ******************
 
-Use pipenv on the command line to install `sqlite-utils <https://sqlite-utils.datasette.io/en/stable/>`_, the Python library we'll use to load our data.
+Use pip on the command line to install `sqlite-utils <https://sqlite-utils.datasette.io/en/stable/>`_, the Python library we'll use to load our data.
 
 .. code-block:: bash
 
-    $ pipenv install sqlite-utils
+    $ pip install sqlite-utils
 
 You can check to see if the library installed using the command-line:
 
@@ -169,11 +142,11 @@ Use sqlite-utils on the command line to load the files into a SQLite database th
 Act 3: Hello Datasette
 *****************
 
-Use pipenv on the command line to install `Datasette <https://datasette.io/>`_, the Python library we'll use to publish our data.
+Use pip on the command line to install `Datasette <https://datasette.io/>`_, the Python library we'll use to publish our data.
 
 .. code-block:: bash
 
-    $ pipenv install datasette
+    $ pip install datasette
 
 You can check to see if the library installed using the command-line:
 
@@ -187,17 +160,20 @@ Now let's fire up Datasette's built-in server to run the app locally:
 
     $ datasette serve house_expenses.db
 
-Switch to your browser and navigate to `http://127.0.0.1:8001/ <http://127.0.0.1:8001/>`_ to see your running app.
+On the lower right, you should see a small window pop up with the message that you can "Open in Browser".
+
+.. image:: /_static/open_in_browser.png
+
+Click on that button to see your running app.
 
 *********************
 Act 4: Customizing Datasette
 *********************
 
-Let's look at the `summary <http://127.0.0.1:8001/house_expenses/summary>`_ table - and click on the AMOUNT header,
-which should sort the amounts. You can see that SQLite doesn't seem to think the values in this columm are numbers;
+Let's look at the summary table - and click on the AMOUNT header, which should sort the amounts. You can see that SQLite doesn't seem to think the values in this columm are numbers;
 instead it is sorting them as text. Let's fix that.
 
-On the command-line, hit Ctrl-C to stop the local server and change some of the columns in our house_expenses.db file
+Back in the terminal, hit Ctrl-C to stop the local server and change some of the columns in our house_expenses.db file
 to the correct datatypes:
 
 .. code-block:: bash
@@ -211,49 +187,41 @@ Now let's try that server again:
 
     $ datasette serve house_expenses.db
 
-Now you can see that if you sort AMOUNT in descending order the `results <http://127.0.0.1:8001/house_expenses/summary?_sort_desc=AMOUNT>`_
-are arranged correctly.
+Now you can see that if you sort AMOUNT in descending order the results are arranged correctly.
 
 *********************
 Act 5: Hello Internet
 *********************
 
-In this final act, we will publish your application to the Internet on Heroku. To do this you will need to have a Heroku account
-and install the `Heroku command-line tool <https://devcenter.heroku.com/articles/heroku-cli>`_. Once you've done that, you can
-use the `datasette publish heroku` command to publish your app. Replace `firstmiddlelast` with your initials:
+In this final act, we will publish your application to the Internet on Fly.io. To do this you will need to have a free "trial" `Fly.io account <https://fly.io>`_
+and install the `Flyctl command-line tool <https://fly.io/docs/hands-on/install-flyctl/>`_. Once you sign up for an account, you can run this in the terminal to install the tool:
 
 .. code-block:: bash
 
-    $ datasette publish heroku house_expenses.db -n house-expenses-firstmiddlelast
+    $ curl -L https://fly.io/install.sh | sh
+    $ export FLYCTL_INSTALL="/home/codespace/.fly"
+    $ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
-Now wait a minute or two, then visit ``https://house-expenses-firstmiddlelast.herokuapp.com/`` to see your Datasette application.
+Then you'll need to authenticate your account:
 
-For Windows 10 users, this step likely will not work - at least, not yet. There is a workaround for publishing on Heroku, but it involves editing local Datasette files. Here's the process:
+.. code-block:: bash
 
-1. Find the Datasette folder on your system. Depending on where you installed it, it may be in a hidden virtual environment folder. (Use the file explorer. It may need to crank for a while. If you know where it's probably located, check "view hidden items" in file explorer and poke around.)
-2. In the datasette/publish directory, open heroku.py for editing in a text editor. You will need to add the phrase `shell=True` in five locations:
+    $ flyctl auth login
 
-.. code-block:: python
+This will generate a URL that you will copy into a browser tab and proceed to follow its prompts. Remember: you want the free account.
 
-    plugins = [
-        line.split()[0] for line in check_output(["heroku", "plugins"], shell=True).splitlines()
-    ]
+After that, you'll need to create a special file called `fly.toml` that will help deploy the app. Follow the instructions `here <https://fly.io/docs/hands-on/launch-app/>`_, giving your app a name and choosing the defaults otherwise. When you're done, you can deploy the app:
 
-    if name:
-        # Check to see if this app already exists
-        list_output = check_output(["heroku", "apps:list", "--json"], shell=True).decode(
-            "utf8"
-        )
+.. code-block:: bash
 
-    create_output = check_output(cmd, shell=True).decode("utf8")
+    $ flyctl deploy
 
-    call(["heroku", "config:set", "-a", app_name, f"{key}={value}"], shell=True)
+Now wait a minute or two, then visit ``https://fly.io/dashboard/personal`` to see your application's status and to find the link to it on the Web.
 
-    call(
-        ["heroku", "builds:create", "-a", app_name, "--include-vcs-ignore"]
-        + tar_option, shell=True
-    )
+Finally, you can add your changes to your GitHub repository and push them:
 
-3. Save heroku.py and run the previous datasette publish command in your shell. If you get an "install heroku builds?" message, hit "y" -- then observe that it maybe didn't work.
-4. Enter heroku plugins:install heroku-builds manually; you should see install activity.
-5. Try the publish command again. Watch the recursive error unfold. If you scroll back up, you should see that your site published even though you get the recursion error.
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "finished tutorial!"
+    $ git push origin main
