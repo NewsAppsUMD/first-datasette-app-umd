@@ -20,7 +20,7 @@ office expenditures. You will do this by using the data published by `ProPublica
 
 .. image:: /_static/datasette.png
 
-You can see `examples of Datasette in action <https://datasette.io/examples>_`, many of which are journalistic in nature or adjacent.
+You can see `examples of Datasette in action <https://datasette.io/examples>`_, many of which are journalistic in nature or adjacent.
 
 *****************
 About the authors
