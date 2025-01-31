@@ -15,8 +15,8 @@ published your work on the World Wide Web.
 What you will make
 ******************
 
-By the end of this lesson, you will publish an interactive database about House of Representatives
-office expenditures. You will do this by using the data published by `ProPublica <https://projects.propublica.org/represent/expenditures>`_.
+By the end of this lesson, you will publish an interactive database about Maryland grant and loan data published 
+by the state. You will do this by using the data published on `Maryland's Open Data Portal <https://opendata.maryland.gov/Budget/State-of-Maryland-Grant-and-Loan-Data-FY2009-to-FY/absk-avps/about_data>`_.
 
 .. image:: /_static/datasette.png
 
@@ -52,7 +52,7 @@ You should create an account at GitHub, if you don't already have one. `The free
 Act 1: Hello Codespaces
 ***********************
 
-Start at the `GitHub URL for this repository <https://github.com/dwillis/first-datasette-app-umd>`_
+Start at the `GitHub URL for this repository <https://github.com/NewsAppsUMD/first-datasette-app-umd>`_
 
 Click the green "Use this template" button and choose "Open in a codespace". You should see something like this:
 
@@ -114,29 +114,27 @@ You can check to see if the library installed using the command-line:
 
     $ sqlite-utils
 
-Let's grab two CSV files and load them into a SQLite database we'll create using the sqlite-utils library.
+Let's grab our CSV file and load it into a SQLite database we'll create using the sqlite-utils library.
 
-Create a directory for your data files and change into it.
+Create a directory for your data and change into it.
 
 .. code-block:: bash
 
     $ mkdir data
     $ cd data
 
-Use wget on the command line to download the CSV files, renaming them using the -O switch:
+Use wget on the command line to download the CSV file, renaming them using the -O switch:
 
 .. code-block:: bash
 
-    $ wget https://projects.propublica.org/congress/assets/staffers/2022Q3-house-disburse-summary.csv -O summary.csv
-    $ wget https://projects.propublica.org/congress/assets/staffers/2022Q3-house-disburse-detail.csv -O detail.csv
+    $ wget https://raw.githubusercontent.com/NewsAppsUMD/data_files/refs/heads/main/State_of_Maryland_Grant_and_Loan_Data__FY2009_to_FY2022_20250131.csv -O grants.csv
 
-Use sqlite-utils on the command line to load the files into a SQLite database that we'll call house_expenses.db:
+Use sqlite-utils on the command line to load the files into a SQLite database that we'll call maryland_grants.db:
 
 .. code-block:: bash
 
     $ cd .. # move up to the main directory
-    $ sqlite-utils insert house_expenses.db summary data/summary.csv --csv
-    $ sqlite-utils insert house_expenses.db detail data/detail.csv --csv
+    $ sqlite-utils insert maryland_grants.db grants data/grants.csv --csv
 
 *****************
 Act 3: Hello Datasette
@@ -158,7 +156,7 @@ Now let's fire up Datasette's built-in server to run the app locally:
 
 .. code-block:: bash
 
-    $ datasette serve house_expenses.db
+    $ datasette serve maryland_grants.db
 
 On the lower right, you should see a small window pop up with the message that you can "Open in Browser".
 
@@ -170,55 +168,31 @@ Click on that button to see your running app.
 Act 4: Customizing Datasette
 *********************
 
-Let's look at the summary table - and click on the AMOUNT header, which should sort the amounts. You can see that SQLite doesn't seem to think the values in this columm are numbers;
+Let's look at the summary table - and click on the Amount header, which should sort the amounts. You can see that SQLite doesn't seem to think the values in this columm are numbers;
 instead it is sorting them as text. Let's fix that.
 
-Back in the terminal, hit Ctrl-C to stop the local server and change some of the columns in our house_expenses.db file
+Back in the terminal, hit Ctrl-C to stop the local server and change some of the columns in our maryland_grants.db file
 to the correct datatypes:
 
 .. code-block:: bash
 
-    $ sqlite-utils transform house_expenses.db summary --type AMOUNT float --type YTD float --type YEAR integer --type QUARTER integer
-    $ sqlite-utils transform house_expenses.db detail --type AMOUNT float --type YEAR integer --type QUARTER integer
+    $ sqlite-utils transform maryland_grants.db grants --type Amount float 
 
 Now let's try that server again:
 
 .. code-block:: bash
 
-    $ datasette serve house_expenses.db
+    $ datasette serve maryland_grants.db
 
-Now you can see that if you sort AMOUNT in descending order the results are arranged correctly.
+Now you can see that if you sort Amount in descending order the results are arranged correctly.
 
 *********************
-Act 5: Hello Internet
+Act 5: Exploring Data with Datasette
 *********************
 
-In this final act, we will publish your application to the Internet on Fly.io. To do this you will need to have a free "trial" `Fly.io account <https://fly.io>`_
-and install the `Flyctl command-line tool <https://fly.io/docs/hands-on/install-flyctl/>`_. Once you sign up for an account, you can run this in the terminal to install the tool:
+In this final act, we will explore some of Datasette's features, including facets, filters and custom SQL queries.
 
-.. code-block:: bash
-
-    $ curl -L https://fly.io/install.sh | sh
-    $ export FLYCTL_INSTALL="/home/codespace/.fly"
-    $ export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
-Then you'll need to authenticate your account:
-
-.. code-block:: bash
-
-    $ flyctl auth login
-
-This will generate a URL that you will copy into a browser tab and proceed to follow its prompts. Remember: you want the free account.
-
-After that, you'll need to create a special file called `fly.toml` that will help deploy the app. Follow the instructions `here <https://fly.io/docs/hands-on/launch-app/>`_, giving your app a name and choosing the defaults otherwise. When you're done, you can deploy the app:
-
-.. code-block:: bash
-
-    $ flyctl deploy
-
-Now wait a minute or two, then visit ``https://fly.io/dashboard/personal`` to see your application's status and to find the link to it on the Web.
-
-Finally, you can add your changes to your GitHub repository and push them:
+When we're done, you can add your changes to your GitHub repository and push them:
 
 .. code-block:: bash
 
