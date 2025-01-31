@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'First News App'
-copyright = u'%s, Investigative Reporters and Editors' % date.today().year
+copyright = u'%s, Derek Willis' % date.today().year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
