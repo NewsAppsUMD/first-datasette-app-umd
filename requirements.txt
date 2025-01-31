@@ -1,0 +1,7 @@
+sqlite-utils
+datasette
+sphinx
+sphinx-autobuild
+pep8
+pyflakes
+python-coveralls
