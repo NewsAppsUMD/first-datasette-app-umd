@@ -168,7 +168,7 @@ Oh, that doesn't work. We need to install a specific Datasette tool to work with
 
 .. code-block:: bash
 
-    $ pip install datasette-codespaces
+    $ datasette install datasette-codespaces
 
 Now try running the server again:
 
