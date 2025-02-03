@@ -164,6 +164,18 @@ On the lower right, you should see a small window pop up with the message that y
 
 Click on that button to see your running app.
 
+Oh, that doesn't work. We need to install a specific Datasette tool to work with codespaces.
+
+.. code-block:: bash
+
+    $ pip install datasette-codespaces
+
+Now try running the server again:
+
+.. code-block:: bash
+
+    $ datasette serve maryland_grants.db
+
 *********************
 Act 4: Customizing Datasette
 *********************
