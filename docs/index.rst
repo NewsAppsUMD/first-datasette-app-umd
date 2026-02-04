@@ -12,12 +12,16 @@ powerful tools, and publishing it for others to use. By the end you will have
 published your work on the World Wide Web.
 
 .. note::
-   **Interactive Learning Mode**: This tutorial is designed to be completed with an AI assistant (Claude Code or GitHub Copilot).
-   The assistant will guide you through the material, asking questions to deepen your understanding.
-   Don't hesitate to ask questions, experiment, and explore beyond the basic instructions!
+   **Interactive Learning Mode**: This tutorial is designed to be completed with an AI assistant.
 
-   **Experienced users**: If you're already comfortable with command-line tools, databases, or web servers,
-   tell your AI assistant "I'm comfortable with [topic], let's move quickly" and skip to the challenges.
+   **How to start**:
+
+   - **In Codespaces**: Run ``claude`` in the terminal, then say "I'm ready to start the tutorial!"
+   - **With Claude Code Desktop**: Open this folder, then say "I'm ready to start the tutorial!"
+   - **With Claude Code CLI**: Run ``claude`` in this directory, then say "I'm ready to start the tutorial!"
+   - **With GitHub Copilot**: Open Copilot Chat and reference the Claude.md file for instructions
+
+   **Experienced users**: Tell your AI assistant "I'm comfortable with [topic], let's move quickly" and skip to the challenges.
 
 ******************
 What you will make

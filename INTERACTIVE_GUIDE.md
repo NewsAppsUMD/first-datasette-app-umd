@@ -27,27 +27,74 @@ You can skip any section you're comfortable with. The real learning is in the **
 
 ## Getting Started
 
-### Option 1: Using Claude Code (Recommended for Codespaces)
+There are several ways to work through this tutorial with an AI assistant. Choose the one that fits your setup:
 
-1. **Open in Codespaces**: Click the green "Use this template" button and choose "Open in a codespace"
-2. **Install Claude Extension**: In the Codespaces VS Code interface:
-   - Click the Extensions icon in the left sidebar
-   - Search for "Claude Code"
-   - Install the extension
-3. **Start the Tutorial**: Open the chat panel and say:
+### Option 1: Claude Code in Codespaces (Recommended)
+
+The easiest way to get started - everything runs in your browser.
+
+1. **Open in Codespaces**: Go to the [repository](https://github.com/NewsAppsUMD/first-datasette-app-umd), click the green "Use this template" button, and choose "Open in a codespace"
+2. **Start Claude Code**: In the Codespaces terminal, run:
+   ```bash
+   claude
+   ```
+3. **Begin the tutorial**: Tell Claude:
    ```
    I'm ready to start the First Datasette App tutorial!
    ```
 
-### Option 2: Using GitHub Copilot Chat
+### Option 2: Claude Code Desktop + Local Clone
+
+If you prefer working locally with the Claude Code desktop app:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/NewsAppsUMD/first-datasette-app-umd.git
+   cd first-datasette-app-umd
+   ```
+2. **Open Claude Code Desktop** and open this folder as your project
+3. **Begin the tutorial**: Tell Claude:
+   ```
+   I'm ready to start the First Datasette App tutorial!
+   ```
+
+### Option 3: Claude Code CLI + Local Clone
+
+For command-line enthusiasts:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/NewsAppsUMD/first-datasette-app-umd.git
+   cd first-datasette-app-umd
+   ```
+2. **Start Claude Code** in your terminal:
+   ```bash
+   claude
+   ```
+3. **Begin the tutorial**: Tell Claude:
+   ```
+   I'm ready to start the First Datasette App tutorial!
+   ```
+
+### Option 4: GitHub Copilot in Codespaces
+
+If you have GitHub Copilot access:
 
 1. **Open in Codespaces**: Click the green "Use this template" button and choose "Open in a codespace"
-2. **Verify Copilot**: Make sure GitHub Copilot is active (you should see the Copilot icon)
-3. **Open Chat**: Click the chat icon or press `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
-4. **Start the Tutorial**: In the chat, say:
+2. **Open Copilot Chat**: Click the chat icon or press `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
+3. **Begin the tutorial**: Tell Copilot:
    ```
    I'm ready to start the First Datasette App tutorial! Please read Claude.md for instructions.
    ```
+
+### Which option should I choose?
+
+| If you... | Use... |
+|-----------|--------|
+| Are new to all this | **Option 1** (Codespaces) - nothing to install |
+| Have Claude Code desktop installed | **Option 2** - familiar interface, local files |
+| Love the command line | **Option 3** - fast and lightweight |
+| Already use GitHub Copilot | **Option 4** - use what you know |
 
 ## Tutorial Overview
 
