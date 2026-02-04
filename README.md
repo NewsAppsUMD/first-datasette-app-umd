@@ -3,16 +3,42 @@ A step-by-step guide to publishing a simple Datasette application.
 
 ## 🤖 Interactive Tutorial Mode
 
-This tutorial is designed to be completed **interactively with an AI assistant** (Claude Code or GitHub Copilot) using a Socratic teaching approach. The AI will guide you through the material, ask questions to deepen your understanding, and help you learn by discovery rather than just following instructions.
+This tutorial is designed to be completed **interactively with an AI assistant** using a Socratic teaching approach. The AI will guide you through the material, ask questions to deepen your understanding, and help you learn by discovery rather than just following instructions.
 
 **👉 [Get Started with the Interactive Guide](INTERACTIVE_GUIDE.md)**
 
-### Quick Start
+### Quick Start Options
 
-1. Open this repository in GitHub Codespaces
-2. Install Claude Code extension or use GitHub Copilot
-3. Start chatting with your AI assistant: "I'm ready to start the First Datasette App tutorial!"
-4. Follow along with the interactive checkpoints in the tutorial
+**Option A: Codespaces + Claude Code** (Recommended - nothing to install!)
+```bash
+# 1. Click "Use this template" → "Open in a codespace"
+# 2. In the terminal, run:
+claude
+# 3. Tell Claude: "I'm ready to start the First Datasette App tutorial!"
+```
+
+**Option B: Local + Claude Code Desktop**
+```bash
+git clone https://github.com/NewsAppsUMD/first-datasette-app-umd.git
+cd first-datasette-app-umd
+# Open this folder in Claude Code Desktop
+# Tell Claude: "I'm ready to start the First Datasette App tutorial!"
+```
+
+**Option C: Local + Claude Code CLI**
+```bash
+git clone https://github.com/NewsAppsUMD/first-datasette-app-umd.git
+cd first-datasette-app-umd
+claude
+# Tell Claude: "I'm ready to start the First Datasette App tutorial!"
+```
+
+**Option D: Codespaces + GitHub Copilot**
+```
+# 1. Click "Use this template" → "Open in a codespace"
+# 2. Open Copilot Chat (Ctrl+Shift+I)
+# 3. Tell Copilot: "I'm ready to start the First Datasette App tutorial! Please read Claude.md for instructions."
+```
 
 ## Resources
 
@@ -25,11 +51,13 @@ This tutorial is designed to be completed **interactively with an AI assistant**
 
 ## What You'll Learn
 
-- Git and version control fundamentals
-- Converting CSV data to SQLite databases with sqlite-utils
+- Loading and querying data with sqlite-utils from the command line
+- Maintaining data over time (updates, validation, automation)
 - Publishing interactive data applications with Datasette
-- Database data types and transformations
+- Enabling full-text search and data enrichments
+- Using Datasette as an API for building applications
 - Data exploration with facets, filters, and SQL queries
+- Finding stories in data through investigative journalism techniques
 
 ## Learning Approach
 
