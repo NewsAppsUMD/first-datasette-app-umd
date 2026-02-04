@@ -4,13 +4,17 @@ Welcome to the **First Datasette App** interactive tutorial! This guide will hel
 
 ## What Makes This Tutorial Interactive?
 
-Unlike traditional tutorials where you simply follow steps, this tutorial is designed as a **conversation between you and an AI assistant** (Claude Code or GitHub Copilot). The AI will:
+Unlike traditional tutorials where you simply follow steps, this tutorial is designed as a **challenging conversation between you and an AI assistant** (Claude Code or GitHub Copilot). The AI will:
 
 - ✅ Ask you questions to check your understanding
 - ✅ Guide you to discover concepts on your own
 - ✅ Help you troubleshoot when you get stuck
 - ✅ Encourage you to make design decisions
-- ✅ Celebrate your progress and learning
+- ✅ Challenge you with substantive exercises that require real thinking
+- ✅ Push you to apply concepts to realistic journalism scenarios
+- ✅ Help you develop professional-level data skills
+
+**This tutorial is designed to be challenging.** You'll be asked to think critically, solve problems independently, and synthesize concepts across multiple areas. The goal isn't just to complete the steps—it's to develop skills you can apply to real data journalism projects.
 
 ## Getting Started
 
@@ -66,8 +70,47 @@ When you see these:
 **🔍 Troubleshooting**: When errors occur, work through them together
 - Example: "What does this error message tell you?"
 
-**✅ Reflections**: Check your understanding at the end of each act
+**🎯 Deep Dive Challenges**: Substantial exercises that push your understanding
+- Example: "Perform a complete data type audit and create a transformation plan"
+- These require independent research, experimentation, and problem-solving
+- Don't expect quick answers—struggle is part of learning
+
+**📝 Substantive Reflections**: Written assignments requiring synthesis and application
+- Example: "Design a Git workflow for a data journalism project"
+- These require you to connect concepts and think about real-world application
+- Discuss thoroughly with your AI assistant before moving on
+
+**🚀 Extension Activities**: Optional challenges for those who want to go deeper
+- Example: "Deploy your Datasette instance to a cloud platform"
+- These are for students who want professional-level skills
+
+**✅ Comprehension Checks**: Verify your understanding at the end of each act
 - Example: "Can you explain what we learned in your own words?"
+
+## Embracing the Challenge
+
+This tutorial is intentionally challenging. Here's why and how to approach it:
+
+### Why Challenges Matter
+
+- **Real journalism is hard**: The skills you need to investigate stories with data require practice
+- **Struggle builds understanding**: When you work through difficulties, concepts stick better
+- **Professional preparation**: These challenges mirror real-world data journalism tasks
+
+### How to Approach Challenges
+
+1. **Try first, ask second**: Attempt each challenge before asking for help
+2. **Document your attempts**: Write down what you tried and what happened
+3. **Embrace confusion**: Feeling stuck is a sign you're learning something new
+4. **Use multiple resources**: Documentation, web searches, and your AI assistant
+5. **Reflect on solutions**: After solving something, ask "Why did this work?"
+
+### The Productive Struggle Zone
+
+You should feel challenged but not hopeless. If you're:
+- **Breezing through**: Ask your AI for additional challenges
+- **Completely stuck**: Ask for hints, not answers
+- **Frustrated**: Take a break, then return with fresh eyes
 
 ## Tips for Success
 
@@ -77,16 +120,20 @@ When you see these:
 - **Explain your thinking**: The AI learns how to help you better when you share your thought process
 - **Experiment**: Try things! The AI can help you recover from mistakes
 - **Take your time**: Learning is more important than speed
-- **Engage with reflections**: They help solidify your understanding
+- **Engage with challenges seriously**: They're where professional skills are built
 - **Be honest about confusion**: It's better to ask than to pretend you understand
+- **Take notes**: Document what you learn for future reference
+- **Connect concepts**: Ask how ideas relate to previous acts and real journalism
 
 ### Don'ts ❌
 
-- **Don't skip the interactive checkpoints**: They're where the deep learning happens
+- **Don't skip the challenges**: They're where the deep learning happens
 - **Don't just copy commands**: Understand what each command does
 - **Don't rush**: This isn't a race
 - **Don't be afraid of errors**: They're learning opportunities
 - **Don't work in silence**: Keep the conversation going with your AI assistant
+- **Don't accept answers without understanding**: Always ask "why?" and "how?"
+- **Don't settle for surface understanding**: Push until concepts are clear
 
 ## Example Interactions
 
@@ -173,18 +220,25 @@ Don't panic! Errors are normal and valuable:
 Here's what you'll learn in each act:
 
 - **Act 1: Hello Codespaces** - Development environment, Git basics, version control
+  - *Challenges*: Git workflow design, branching strategy, failure scenario analysis
 - **Act 2: Hello sqlite-utils** - CSV data, databases, command-line tools
+  - *Challenges*: Data inspection, command mastery, database design critique
 - **Act 3: Hello Datasette** - Web servers, publishing data, plugins
+  - *Challenges*: Plugin ecosystem exploration, metadata configuration, API analysis
 - **Act 4: Customizing Datasette** - Data types, database transformations
-- **Act 5: Exploring Data** - Data analysis, facets, filters, SQL queries
+  - *Challenges*: Complete data audit, validation, computed columns, transformation scripting
+- **Act 5: Exploring Data** - Data analysis, facets, filters, SQL queries, finding stories
+  - *Challenges*: Investigative data journalism, advanced SQL, data joining, capstone project
 
 ## Expected Time
 
-- **Fast pace**: 1-2 hours (if you have some programming experience)
-- **Moderate pace**: 2-3 hours (recommended - don't rush!)
-- **Thoughtful pace**: 3-4 hours (taking time to really understand everything)
+- **Core tutorial**: 2-3 hours (completing the basic steps and interactive checkpoints)
+- **With challenges**: 4-6 hours (completing Deep Dive Challenges and Substantive Reflections)
+- **Full experience**: 6-8+ hours (including Extension Activities and Capstone Project)
 
-**Remember**: The goal isn't to finish quickly - it's to understand deeply!
+**Important**: The challenges are where the real learning happens. Don't skip them just to "finish" faster. A journalist who deeply understands these tools will be far more effective than one who rushed through.
+
+**Remember**: The goal isn't to finish quickly - it's to develop professional-level skills!
 
 ## Assessment and Understanding
 
@@ -199,10 +253,22 @@ Throughout the tutorial, the AI will check your understanding through questions.
 
 When you complete the tutorial:
 
-1. **Review your work**: Look back at what you've built
-2. **Final reflection**: Discuss with the AI what you learned
-3. **Explore further**: Ask about next steps and advanced topics
-4. **Apply your knowledge**: Think about projects where you could use these skills
+1. **Complete the Capstone Project**: This is the most important part—apply everything you've learned to a real project proposal
+2. **Review your work**: Look back at what you've built and the challenges you completed
+3. **Final reflection**: Use the comprehensive reflection checklist to verify your understanding
+4. **Execute your capstone**: Consider actually building the project you proposed
+5. **Share your learning**: Help classmates, write about what you learned, or contribute to the Datasette community
+
+### Continuing Your Learning
+
+The tutorial introduces you to several pathways for continued growth:
+- **Data Engineering**: Build automated data pipelines
+- **Data Visualization**: Create compelling charts and graphics
+- **Investigative Methods**: Develop source-finding and verification skills
+- **Advanced Programming**: Deepen Python and SQL expertise
+- **Cloud Deployment**: Learn to publish and maintain production applications
+
+Discuss with your AI assistant which pathway aligns with your career goals.
 
 ## Troubleshooting the Interactive Experience
 
@@ -226,13 +292,19 @@ When you complete the tutorial:
 
 ## Tips from Past Students
 
-> "At first I wanted to just rush through, but when I slowed down and really discussed things with the AI, I understood so much more!"
+> "At first I wanted to just rush through, but when I slowed down and really engaged with the challenges, I understood so much more!"
 
 > "Don't be embarrassed to ask 'dumb questions' - the AI never judges and the explanations really helped."
 
-> "The reflection questions at the end of each act helped me realize what I'd actually learned."
+> "The Deep Dive Challenges were hard, but they forced me to actually understand the tools instead of just using them."
 
 > "Making mistakes and working through errors with the AI taught me more than getting everything right the first time."
+
+> "The capstone project made me realize I could actually do data journalism. It brought everything together."
+
+> "I spent extra time on the SQL challenges and now I use those skills every week in my reporting."
+
+> "The reflection assignments seemed tedious at first, but writing out my thinking clarified so much."
 
 ## Ready to Begin?
 

@@ -120,7 +120,7 @@ When a student starts a new act, follow this pattern:
 - Response: "How does a computer need to treat the text '100' differently than the number 100?"
 
 ### Act 5: Exploring Data with Datasette
-**Learning Goals**: Data exploration, facets, filters, SQL basics
+**Learning Goals**: Data exploration, facets, filters, SQL basics, data journalism, finding stories
 
 **Key Interactive Moments**:
 - "What questions would you want to ask about Maryland grant data?"
@@ -131,6 +131,33 @@ When a student starts a new act, follow this pattern:
 **Common Struggles**:
 - Knowing what questions to ask of data
 - Response: "Think like a journalist. Who got money? When? How much? Are there patterns?"
+
+**Challenge Facilitation for Act 5**:
+
+*Find a Story Challenge*:
+- Push for specificity: "That's interesting, but what's the NEWS hook?"
+- Ask about verification: "How would you confirm this isn't a data error?"
+- Consider context: "Is this surprising? What would the normal pattern be?"
+- Think about sources: "Who would you call to comment on this?"
+
+*Advanced SQL Challenge*:
+- Start with plain English: "Describe what you want to find before writing SQL"
+- Build incrementally: "Let's start with a simpler query and add complexity"
+- Validate results: "Does this result make sense? How can we verify?"
+- Encourage documentation: "Add a comment explaining what this query does"
+
+*Data Joining Challenge*:
+- This is conceptual - they don't need to actually perform the join
+- Focus on join keys: "What field would connect these two datasets?"
+- Discuss data quality: "What happens if the names don't match exactly?"
+- Consider ethics: "Should these datasets be combined? Any privacy concerns?"
+
+*Capstone Project*:
+- This should take significant time and thought
+- Be a supportive but critical reviewer
+- Ask: "Is this doable in a reasonable timeframe?"
+- Push on methodology: "How would you verify your findings?"
+- Consider publication: "Who would publish this? What's the public interest?"
 
 ## Response Patterns
 
@@ -184,6 +211,18 @@ If a student finishes early or shows advanced understanding:
 - "What other datasets might you want to explore with Datasette?"
 - "How would you customize the appearance of your Datasette instance?"
 - "Can you think of ways to enhance this data with additional information?"
+
+**Deep Dive Challenges** are designed for these students:
+- Encourage them to attempt ALL challenges, not just the minimum
+- Push them to explain their reasoning thoroughly
+- Ask them to compare approaches: "You solved it this way - what's another approach?"
+- Have them document their solutions for others
+
+**Extension Activities** to suggest:
+- Deploying to cloud platforms (Vercel, Fly.io, Google Cloud Run)
+- Building custom visualizations with datasette-vega
+- Contributing to Datasette plugin ecosystem (even just documentation)
+- Creating a tutorial for classmates on what they learned
 
 ### For Struggling Students
 
@@ -334,6 +373,63 @@ When students need more information:
 - Encourage reading error messages and documentation
 - Teach them to fish: "Let's look up X in the documentation together"
 
+## Advanced Challenge Guidelines
+
+This tutorial includes substantive challenges that require deeper engagement. Here's how to guide students through them:
+
+### Deep Dive Challenges
+
+Each act contains "Deep Dive Challenges" that push beyond basic comprehension:
+
+**How to facilitate these challenges:**
+- Don't give answers immediately - let students struggle productively
+- Ask scaffolding questions: "What have you tried?", "What does the error tell you?"
+- Encourage documentation/note-taking during exploration
+- Celebrate the learning process, not just correct answers
+
+**When students get stuck on challenges:**
+1. First, ask what they've attempted
+2. Provide a conceptual hint (not the solution)
+3. Suggest documentation or resources to consult
+4. Only after sustained effort, walk through the approach together
+5. Always ask: "Now that you see the solution, does it make sense?"
+
+### Substantive Reflection Assignments
+
+These go beyond simple recall - they require synthesis and application:
+
+**Key facilitation strategies:**
+- Give students time to think before responding
+- Ask follow-up questions to deepen their analysis
+- Challenge assumptions respectfully: "What if the data was biased?"
+- Connect concepts across acts: "How does this relate to what we learned about Git?"
+
+**Types of reflection questions:**
+- **Design questions**: "How would you architect...?"
+- **Critique questions**: "What are the limitations of...?"
+- **Application questions**: "In what real situation would you...?"
+- **Ethical questions**: "What could go wrong if...?"
+
+### Extension Activities
+
+For advanced students or those who want to go deeper:
+
+- These are optional but valuable
+- Provide minimal guidance - encourage independent exploration
+- Be available as a resource but let them drive
+- Encourage them to share what they learned
+
+### Capstone Project Guidance
+
+The final capstone requires students to synthesize everything:
+
+**How to guide the capstone:**
+- This should feel like authentic journalism planning
+- Push for specificity: "What exact dataset? Where would you find it?"
+- Ask about feasibility: "How long would the data cleaning take?"
+- Probe ethical considerations: "Who might be harmed by this publication?"
+- Encourage ambition balanced with realism
+
 ## Success Criteria
 
 By the end of the tutorial, students should be able to:
@@ -344,6 +440,15 @@ By the end of the tutorial, students should be able to:
 5. ✅ Understand data types and their importance
 6. ✅ Explore data using facets, filters, and SQL
 7. ✅ Articulate how they might use these tools for journalism
+
+### Advanced Success Criteria (for students who complete challenges):
+8. ✅ Design appropriate database schemas for journalism projects
+9. ✅ Write intermediate SQL queries including aggregations and joins
+10. ✅ Evaluate Datasette plugins for specific use cases
+11. ✅ Create reproducible data transformation workflows
+12. ✅ Identify potential stories within datasets
+13. ✅ Articulate ethical considerations in data publishing
+14. ✅ Plan complete data journalism projects from acquisition to publication
 
 ## Final Notes
 
