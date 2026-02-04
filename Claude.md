@@ -68,13 +68,14 @@ When a student starts a new act, follow this pattern:
 ## Specific Act Guidelines
 
 ### Act 1: Hello sqlite-utils
-**Learning Goals**: Command-line data loading, quick queries, data export, reporting efficiency
+**Learning Goals**: Command-line data loading, quick queries, data export, ongoing maintenance
 
 **Key Interactive Moments**:
 - Ask: "Why might a command-line tool be faster than a spreadsheet for some tasks?"
 - Have them try queries before explaining: "What happens when you run this SQL?"
 - Prompt: "When would you export as CSV vs. JSON?"
 - Connect to reporting: "Imagine you have 5 minutes before deadline. How does this help?"
+- Ask about sustainability: "This data is updated monthly. How would you handle that?"
 
 **Common Struggles**:
 - Command-line intimidation
@@ -95,17 +96,26 @@ When a student starts a new act, follow this pattern:
 - Discuss newsroom workflows: "When would you email a CSV vs. share a JSON API?"
 - Think about collaboration: "Your colleague uses Python. What format would be easiest for them?"
 
+*Data Maintenance*:
+- Make it real: "The state just released new data. Walk me through your update process."
+- Ask about validation: "How would you know if something went wrong with the update?"
+- Think about history: "Should you keep old versions? How would you track changes?"
+- Consider automation: "What would you automate? What requires human judgment?"
+
 ### Act 2: Hello Datasette
-**Learning Goals**: Web publishing, full-text search, enrichments, making data discoverable
+**Learning Goals**: Web publishing, full-text search, enrichments, API capabilities
 
 **Key Interactive Moments**:
 - Before starting the server: "What do you think 'publishing' data means?"
 - When enabling search: "How is searching different from filtering?"
 - When discussing enrichments: "What additional information would make this data more useful?"
+- When exploring API: "Who else might want to access this data programmatically?"
 
 **Common Struggles**:
 - Understanding why web publishing matters
 - Response: "Who might want to explore this data besides you? How would they access it?"
+- Understanding APIs
+- Response: "Think of the API as a way for computers to ask questions. What questions might they ask?"
 
 **Challenge Facilitation for Act 2**:
 
@@ -122,6 +132,13 @@ When a student starts a new act, follow this pattern:
 *Search Plugins*:
 - Practical scenarios: "You remember a grant recipient's name started with 'Maryland' something. How do you find it?"
 - Compare tools: "When would you use full-text search vs. SQL LIKE vs. facet filtering?"
+
+*Datasette API*:
+- Make it concrete: "Try adding .json to the URL. What do you get?"
+- Think about applications: "What could a web developer build with this API?"
+- Consider newsroom uses: "How could your news website pull live data from this?"
+- Discuss responsibility: "If others build tools on your API, what are your obligations?"
+- Explore parameters: "How would you get only grants over $1M via the API?"
 
 ### Act 3: Exploring Data for Stories
 **Learning Goals**: Story finding, facets, filters, SQL for journalism, verification thinking
@@ -366,14 +383,16 @@ The final capstone requires students to synthesize everything:
 By the end of the tutorial, students should be able to:
 1. ✅ Load data with sqlite-utils and run command-line queries
 2. ✅ Export data in multiple formats for different uses
-3. ✅ Publish data with Datasette
-4. ✅ Enable and use full-text search effectively
-5. ✅ Understand enrichments and their journalistic value
-6. ✅ Use facets, filters, and SQL to explore data
-7. ✅ Identify potential stories in datasets
-8. ✅ Articulate verification steps before publishing
-9. ✅ Consider ethics of data publication
-10. ✅ Plan a complete data journalism project
+3. ✅ Maintain data over time (updates, validation, corrections)
+4. ✅ Publish data with Datasette
+5. ✅ Enable and use full-text search effectively
+6. ✅ Understand enrichments and their journalistic value
+7. ✅ Use Datasette's JSON API and understand its applications
+8. ✅ Use facets, filters, and SQL to explore data
+9. ✅ Identify potential stories in datasets
+10. ✅ Articulate verification steps before publishing
+11. ✅ Consider ethics of data publication and API access
+12. ✅ Plan a complete data journalism project with sustainability
 
 ## Final Notes
 

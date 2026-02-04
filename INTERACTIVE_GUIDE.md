@@ -43,10 +43,10 @@ Unlike traditional tutorials where you simply follow steps, this tutorial is des
 
 Here's what you'll learn in each act:
 
-- **Act 1: Hello sqlite-utils** - Loading data, command-line queries, export formats
-  - *Challenges*: Quick data profiling, command-line SQL, data extraction for newsroom workflows
-- **Act 2: Hello Datasette** - Web publishing, full-text search, enrichments
-  - *Challenges*: Search strategy design, enrichment pipelines, publication ethics
+- **Act 1: Hello sqlite-utils** - Loading data, command-line queries, export formats, data maintenance
+  - *Challenges*: Quick data profiling, command-line SQL, data extraction, ongoing updates
+- **Act 2: Hello Datasette** - Web publishing, full-text search, enrichments, API capabilities
+  - *Challenges*: Search strategy design, enrichment pipelines, API applications, publication ethics
 - **Act 3: Exploring Data for Stories** - Facets, filters, SQL, finding news
   - *Challenges*: Story pitching, accountability queries, enterprise investigations, public service tools
 
@@ -297,6 +297,9 @@ Discuss with your AI assistant which pathway aligns with your career goals.
 # Load data
 sqlite-utils insert database.db tablename data.csv --csv
 
+# Append new data (skip duplicates)
+sqlite-utils insert database.db tablename new_data.csv --csv --ignore
+
 # Query from command line
 sqlite-utils database.db "SELECT * FROM tablename LIMIT 10"
 
@@ -309,8 +312,27 @@ sqlite-utils enable-fts database.db tablename column1 column2
 # Start Datasette
 datasette serve database.db
 
+# Start with CORS enabled (for API access from other sites)
+datasette serve database.db --cors
+
 # Install plugins
 datasette install plugin-name
+```
+
+### API Endpoints
+
+```text
+# JSON data (add .json to any table URL)
+/database/tablename.json
+
+# With filters
+/database/tablename.json?column__gt=1000
+
+# SQL query as JSON
+/database.json?sql=SELECT+*+FROM+tablename+LIMIT+10
+
+# CSV export
+/database/tablename.csv
 ```
 
 ### Useful SQL Patterns

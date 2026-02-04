@@ -165,6 +165,43 @@ Use sqlite-utils on the command line to load the files into a SQLite database th
 
    When would each format be most useful in a newsroom?
 
+   **Challenge 4: Ongoing Data Maintenance**
+
+   Real journalism projects require ongoing data updates. sqlite-utils makes this manageable:
+
+   .. code-block:: bash
+
+       # Append new data to existing table (e.g., when state releases new month's data)
+       $ sqlite-utils insert maryland_grants.db grants new_grants.csv --csv
+
+       # Insert with duplicate handling - skip records that already exist
+       $ sqlite-utils insert maryland_grants.db grants new_grants.csv --csv --ignore
+
+       # Or replace duplicates with newer versions (requires primary key)
+       $ sqlite-utils insert maryland_grants.db grants new_grants.csv --csv --replace
+
+       # Compare old vs new: find records in new file not in database
+       $ sqlite-utils maryland_grants.db "SELECT * FROM grants WHERE rowid > (SELECT MAX(rowid) - 100 FROM grants)"
+
+   Practice these maintenance scenarios:
+
+   1. **Monthly updates**: The state releases new grant data each month. How do you:
+      - Download and validate the new file
+      - Check for unexpected changes in format or columns
+      - Append only genuinely new records
+      - Verify the update succeeded
+
+   2. **Corrections**: The state issues corrections to previously reported data. How do you:
+      - Identify which records need updating
+      - Preserve a record of what changed (audit trail)
+      - Update your database without losing history
+
+   3. **Automation**: Design a simple update script that:
+      - Downloads latest data from source
+      - Compares to existing records
+      - Alerts you to anomalies (sudden spike in grants, missing expected records)
+      - Logs what was added/changed
+
 .. admonition:: 📝 Substantive Reflection Assignment
    :class: important
 
@@ -176,21 +213,27 @@ Use sqlite-utils on the command line to load the files into a SQLite database th
       - A daily data check
       - A collaborative investigation
 
-   2. **Data Pipeline Thinking**: You receive updated grant data every month from the state.
-      How would you use sqlite-utils to:
-      - Check if the new data has the expected number of records
-      - Identify any new grantees that weren't in previous months
-      - Flag unusually large grants for editor review
-      - Append new data to your existing database
+   2. **Data Maintenance Strategy**: You're setting up a long-term data project that will track
+      Maryland grants over the next two years. Design your maintenance plan:
+      - How often will you check for new data?
+      - How will you detect if the source format changes?
+      - How will you handle corrections to historical data?
+      - What validation checks will you run after each update?
+      - How will you document changes for your editor and readers?
 
-      Write the actual commands you would use.
+      Write the actual sqlite-utils commands you would use for monthly updates.
 
-   3. **Limitations**: What CAN'T sqlite-utils do well? When would you switch to:
+   3. **Automation and Alerts**: Design an automated monitoring system:
+      - What would trigger an alert? (New large grant? New recipient? Missing data?)
+      - How would you notify yourself or your editor?
+      - What would your "data health check" script look like?
+
+   4. **Limitations**: What CAN'T sqlite-utils do well? When would you switch to:
       - A spreadsheet (Excel/Sheets)
       - A full programming environment (Python/pandas)
       - A visualization tool
 
-   When you feel comfortable querying data from the command line, move on to Act 2!
+   When you feel comfortable with data loading, querying, AND maintenance, move on to Act 2!
 
 *****************
 Act 2: Hello Datasette
@@ -312,6 +355,62 @@ Now try running the server again:
 
    How would each of these help a reporter on deadline?
 
+   **Challenge 4: Datasette as an API**
+
+   Every Datasette instance is automatically a full JSON API - no extra configuration needed.
+   This is powerful for building applications, sharing data, and automation.
+
+   Try these API endpoints in your browser (add ``.json`` to any URL):
+
+   .. code-block:: text
+
+       # Get table data as JSON
+       /maryland_grants/grants.json
+
+       # With filters
+       /maryland_grants/grants.json?_where=Amount>1000000
+
+       # With specific columns
+       /maryland_grants/grants.json?_col=Grantee&_col=Amount
+
+       # Paginated results
+       /maryland_grants/grants.json?_size=100&_offset=200
+
+       # SQL query results as JSON
+       /maryland_grants.json?sql=SELECT+Grantee,+SUM(Amount)+as+total+FROM+grants+GROUP+BY+Grantee+ORDER+BY+total+DESC+LIMIT+10
+
+   Explore the API:
+
+   1. **From the command line** - Use curl to fetch data:
+
+      .. code-block:: bash
+
+          # Fetch top grantees as JSON
+          $ curl "http://localhost:8001/maryland_grants/grants.json?_size=5" | python -m json.tool
+
+   2. **Different formats** - Datasette supports multiple output formats:
+
+      .. code-block:: text
+
+          .json     - JSON (default)
+          .csv      - CSV download
+          .tsv      - Tab-separated values
+          .nl       - Newline-delimited JSON (for streaming)
+
+   3. **Build something** - Discuss with your AI assistant:
+      - How could a newsroom website pull live data from this API?
+      - How could you build a grant lookup widget for your news site?
+      - How could another team's Python script consume this data?
+      - What would a "grant alert" system look like that checks for new large grants?
+
+   4. **CORS for external access** - For public APIs, enable cross-origin requests:
+
+      .. code-block:: bash
+
+          $ datasette serve maryland_grants.db --cors
+
+      This allows JavaScript on other websites to fetch your data.
+
 .. admonition:: 📝 Substantive Reflection Assignment
    :class: important
 
@@ -329,13 +428,27 @@ Now try running the server again:
       - How would you validate that enrichments are accurate?
       - What are the risks of automated enrichment (e.g., geocoding errors)?
 
-   3. **Publication Ethics**: Datasette makes it easy to publish data. Consider:
-      - Should all grant recipient names be searchable? Why or why not?
-      - What if searching reveals patterns about specific individuals?
-      - How do you balance transparency with potential for misuse?
-      - What documentation should accompany published data?
+   3. **API Applications**: Datasette's automatic API opens many possibilities. Design TWO applications:
 
-   When you understand how search and enrichments extend Datasette's power, move on to Act 3!
+      **Application 1 - Internal newsroom tool**:
+      - What would it do? (grant lookup, alert system, comparison tool?)
+      - What API endpoints would it use?
+      - Who would use it and how?
+
+      **Application 2 - Public-facing feature**:
+      - How would your news website use this API?
+      - What would readers be able to do? (search grants, look up their town?)
+      - How would you handle rate limiting and abuse?
+      - What caching strategy would you use?
+
+   4. **Publication Ethics**: Datasette makes it easy to publish data AND an API. Consider:
+      - Should all grant recipient names be searchable? Why or why not?
+      - What if someone builds a tool on your API that you didn't anticipate?
+      - How do you balance transparency with potential for misuse?
+      - What documentation should accompany your API?
+      - Should you require API keys or allow anonymous access?
+
+   When you understand search, enrichments, AND API capabilities, move on to Act 3!
 
 *********************
 Act 3: Exploring Data for Stories
@@ -516,6 +629,8 @@ When we're done, you can add your changes to your GitHub repository and push the
    - What Datasette features (search, facets, enrichments) will help?
    - What SQL queries will test your hypotheses?
    - What additional data might you need to join?
+   - How will you handle ongoing data updates?
+   - Will you expose an API? For whom?
 
    **Part 4: The Journalism**
    - Who are your human sources?
@@ -535,9 +650,11 @@ When we're done, you can add your changes to your GitHub repository and push the
    **Skills Checklist** (Verify you can explain each):
 
    □ sqlite-utils: insert data, run queries, export formats
+   □ Data maintenance: append updates, handle duplicates, validate changes
    □ Datasette: serve, explore with facets and filters, SQL interface
    □ Full-text search: when and how to use it
    □ Enrichments: what they do and when they're appropriate
+   □ Datasette API: JSON endpoints, query parameters, building on the API
    □ Story-finding: patterns, outliers, trends, gaps
    □ Verification: what questions to ask before publishing
 
@@ -551,9 +668,22 @@ When we're done, you can add your changes to your GitHub repository and push the
    3. **Verification**: You find a surprising pattern. Walk through the steps you'd
       take before telling your editor you have a story.
 
-   4. **Audience**: How would you explain your methodology to:
+   4. **Sustainability**: You publish this Datasette with an API. Six months later:
+      - How do you keep the data fresh?
+      - What if the state changes their data format?
+      - What if external applications depend on your API?
+      - How do you communicate updates and changes to users?
+
+   5. **API Responsibility**: External developers build tools on your API:
+      - What happens if you need to change the data structure?
+      - How do you handle versioning?
+      - What are your obligations to API consumers?
+      - When might you need to restrict access?
+
+   6. **Audience**: How would you explain your methodology to:
       - Your editor?
       - A general reader?
+      - A developer who wants to use your API?
       - A subject of your story who disputes your findings?
 
    **Continue Learning**:
