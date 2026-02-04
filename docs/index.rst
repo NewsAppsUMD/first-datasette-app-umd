@@ -7,8 +7,8 @@ First Datasette App
 A step-by-step guide to publishing a simple Datasette application.
 
 This tutorial will walk you through the process of building an interactive Datasette application
-from a structured dataset. You will get hands-on experience in every stage of the
-development process while recording it in Git's version control system. By the end you will have
+from a structured dataset. You will get hands-on experience loading data, exploring it with
+powerful tools, and publishing it for others to use. By the end you will have
 published your work on the World Wide Web.
 
 .. note::
@@ -20,7 +20,7 @@ published your work on the World Wide Web.
 What you will make
 ******************
 
-By the end of this lesson, you will publish an interactive database about Maryland grant and loan data published 
+By the end of this lesson, you will publish an interactive database about Maryland grant and loan data published
 by the state. You will do this by using the data published on `Maryland's Open Data Portal <https://opendata.maryland.gov/Budget/State-of-Maryland-Grant-and-Loan-Data-FY2009-to-FY/absk-avps/about_data>`_.
 
 .. image:: /_static/datasette.png
@@ -44,24 +44,27 @@ Before you can begin, your computer needs the following tools installed and work
 
 Seriously, that's it. Well, and a browser.
 
-Git and GitHub
---------------
+GitHub
+------
 
-`GitHub <https://github.com/>`_ is a website that hosts git code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later.
+`GitHub <https://github.com/>`_ is a website that hosts code repositories, both public and private. It comes with many helpful tools for reviewing code and managing projects. It also has some `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later.
 
 You should create an account at GitHub, if you don't already have one. `The free plan <https://github.com/pricing>`_ is all that's required to complete this lesson.
 
 .. _activate:
 
-***********************
-Act 1: Hello Codespaces
-***********************
+**********************
+Act 1: Hello sqlite-utils
+**********************
 
 .. admonition:: 🤔 Interactive Checkpoint
    :class: tip
 
-   **Before you begin Act 1**: Chat with your AI assistant about what you hope to learn from this tutorial.
-   Ask them to explain what we'll accomplish in this first act before diving in.
+   **Before you begin Act 1**: Discuss with your AI assistant:
+
+   - What do you think "sqlite-utils" does based on its name?
+   - Why might journalists want a fast way to work with data from the command line?
+   - What kinds of data questions do you want to answer with Maryland grant data?
 
 Start at the `GitHub URL for this repository <https://github.com/NewsAppsUMD/first-datasette-app-umd>`_
 
@@ -73,116 +76,7 @@ The browser is divided into three sections: on the left is a file explorer, list
 
 The codespace will be connected to your repository in the `the NewsApps organization on GitHub <https://github.com/NewsAppsUMD/>`_.
 
-.. admonition:: 💭 Pause and Discuss
-   :class: tip
-
-   **Before editing**: Ask your AI assistant to explain the three sections of the Codespaces interface.
-   What do you think each section is used for? Describe what you see before reading further.
-
-Open up the README by clicking on README.md on the left side and type something in it. Maybe change the heading like:
-
-.. code-block:: markdown
-
-    # My First Datasette App
-
-Make sure to save it. You'll see on the left that there's a yellow "M" next to README.md, meaning you've made some edits. Let's double-check that in the terminal:
-
-.. admonition:: 🤔 Think First
-   :class: tip
-
-   **Before running git status**: Ask your AI assistant what you expect to see when you run ``git status``.
-   What does the "M" indicator mean? Why might we want to check the status?
-
-.. code-block:: bash
-
-    $ git status
-
-You should see something like this:
-
-.. image:: /_static/git_status.png
-
-If so, we can add and commit it:
-
-.. code-block:: bash
-
-    $ git add README.md
-
-Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
-
-.. admonition:: 💬 Commit Message Practice
-   :class: tip
-
-   **Before committing**: Ask your AI assistant what makes a good commit message. Come up with your own
-   commit message that describes what you changed. Discuss why clear commit messages matter.
-
-.. code-block:: bash
-
-    $ git commit -m "First commit"
-
-Now, finally, push your commit up to GitHub.
-
-.. code-block:: bash
-
-    $ git push origin main
-
-Reload your repository on GitHub and see your handiwork.
-
-.. admonition:: 🎯 Deep Dive Challenge
-   :class: warning
-
-   **Challenge 1: Understanding Your History**
-
-   Run ``git log --oneline`` to see your commit history. Now imagine you're working on a months-long
-   data journalism project with a team.
-
-   - How would you structure your commits differently for a complex project?
-   - What would happen if you needed to undo a change from two weeks ago?
-   - Research: What is ``git diff`` and how might it help you review changes before committing?
-
-   **Challenge 2: Branching Thinking**
-
-   Ask your AI assistant to explain Git branches. Then consider:
-
-   - Why might you create a branch called ``experimental-analysis`` before trying a risky data transformation?
-   - How do branches enable collaboration without conflicts?
-   - What's the relationship between branches and pull requests on GitHub?
-
-.. admonition:: 📝 Substantive Reflection Assignment
-   :class: important
-
-   **Written Reflection** (Discuss thoroughly with your AI assistant):
-
-   1. **Workflow Design**: Design a Git workflow for a data journalism project that involves:
-      - Raw data that should never be modified
-      - Cleaned/processed data that evolves over time
-      - Analysis scripts that change frequently
-      - Final published outputs
-
-      How would you organize commits? What would your commit message conventions be?
-
-   2. **Failure Scenarios**: What could go wrong without version control? Describe a realistic
-      scenario where a journalist loses work or publishes incorrect data because they didn't
-      use version control. How would Git have prevented this?
-
-   3. **Beyond Code**: Git isn't just for code. What other artifacts in a newsroom might benefit
-      from version control? (Think: data dictionaries, methodology documents, fact-check records)
-
-   When you can articulate these concepts clearly, move on to Act 2!
-
-******************
-Act 2: Hello sqlite-utils
-******************
-
-.. admonition:: 🤔 Interactive Checkpoint
-   :class: tip
-
-   **Before you begin Act 2**: Discuss with your AI assistant:
-
-   - What do you think "sqlite-utils" does based on its name?
-   - Have you worked with databases before? What do you know about SQLite?
-   - Why might we want to put CSV data into a database?
-
-Use pip on the command line to install `sqlite-utils <https://sqlite-utils.datasette.io/en/stable/>`_, the Python library we'll use to load our data.
+Use pip on the command line to install `sqlite-utils <https://sqlite-utils.datasette.io/en/stable/>`_, the Python library we'll use to load and explore our data.
 
 .. code-block:: bash
 
@@ -192,16 +86,9 @@ You can check to see if the library installed using the command-line:
 
 .. code-block:: bash
 
-    $ sqlite-utils
+    $ sqlite-utils --help
 
 Let's grab our CSV file and load it into a SQLite database we'll create using the sqlite-utils library.
-
-.. admonition:: 💭 Design Decision
-   :class: tip
-
-   **Before creating the data directory**: Ask your AI assistant why we might want to create a separate
-   ``data`` directory instead of putting files in the root. What are some benefits of organizing
-   projects into directories?
 
 Create a directory for your data and change into it.
 
@@ -229,79 +116,94 @@ Use sqlite-utils on the command line to load the files into a SQLite database th
     $ cd .. # move up to the main directory
     $ sqlite-utils insert maryland_grants.db grants data/grants.csv --csv
 
-.. admonition:: 🎯 Deep Dive Challenge
+.. admonition:: 🎯 Deep Dive Challenge: sqlite-utils Power Features
    :class: warning
 
-   **Challenge 1: Data Inspection**
+   **Challenge 1: Quick Data Profiling**
 
-   Before moving on, explore your data more deeply:
+   sqlite-utils excels at rapid data exploration. Try these commands and discuss what you learn:
 
    .. code-block:: bash
 
-       $ sqlite-utils schema maryland_grants.db
+       # How many records do we have?
+       $ sqlite-utils rows maryland_grants.db grants --limit 5
 
-   This shows you the database structure. Now:
+       # What are the unique values in a column?
+       $ sqlite-utils rows maryland_grants.db grants --columns "Fiscal Year" | sort | uniq -c
 
-   - What columns exist in the grants table? Are the data types appropriate?
-   - Run ``sqlite-utils rows maryland_grants.db grants --limit 5`` to see sample data
-   - Identify at least THREE potential data quality issues (missing values, inconsistent formatting, wrong types)
+       # Quick counts
+       $ sqlite-utils tables maryland_grants.db --counts
 
-   **Challenge 2: Command Mastery**
+   **Challenge 2: Command-Line SQL**
 
-   Explore sqlite-utils capabilities by running ``sqlite-utils --help``. Find and explain:
+   sqlite-utils lets you run SQL directly from the terminal - powerful for quick checks:
 
-   - How would you add a second CSV file to create a new table in the same database?
-   - What does ``sqlite-utils tables maryland_grants.db --counts`` tell you?
-   - How could you extract specific columns into a new table?
+   .. code-block:: bash
 
-   **Challenge 3: Data Journalism Thinking**
+       # Who got the biggest grants?
+       $ sqlite-utils maryland_grants.db "SELECT Grantee, Amount FROM grants ORDER BY CAST(Amount AS REAL) DESC LIMIT 10"
 
-   Look at the actual data in your grants.csv file. Consider:
+       # How much total by year?
+       $ sqlite-utils maryland_grants.db "SELECT \"Fiscal Year\", SUM(CAST(Amount AS REAL)) as total FROM grants GROUP BY \"Fiscal Year\""
 
-   - What questions could a journalist ask of this dataset?
-   - What's missing that would make the story more complete? (Think: inflation adjustment, recipient details, geographic data)
-   - If you were to FOIA additional data to supplement this, what would you request?
+   Practice writing your own queries. What questions about Maryland grants can you answer in one line?
+
+   **Challenge 3: Data Extraction and Conversion**
+
+   sqlite-utils can export data in multiple formats - useful for sharing with colleagues:
+
+   .. code-block:: bash
+
+       # Export query results as CSV
+       $ sqlite-utils maryland_grants.db "SELECT * FROM grants WHERE CAST(Amount AS REAL) > 10000000" --csv > big_grants.csv
+
+       # Export as JSON (for web developers or APIs)
+       $ sqlite-utils maryland_grants.db "SELECT * FROM grants LIMIT 100" --json-cols
+
+       # Export as newline-delimited JSON (for data pipelines)
+       $ sqlite-utils rows maryland_grants.db grants --nl
+
+   When would each format be most useful in a newsroom?
 
 .. admonition:: 📝 Substantive Reflection Assignment
    :class: important
 
    **Written Reflection** (Discuss thoroughly with your AI assistant):
 
-   1. **Database Design Critique**: The current setup has one table. Is this optimal?
-      Design an improved database schema that might include:
-      - A separate table for grant recipients
-      - A table for fiscal year metadata
-      - A lookup table for grant categories
+   1. **Reporting Scenarios**: Describe THREE specific reporting scenarios where sqlite-utils
+      command-line queries would be faster than opening Excel or Google Sheets:
+      - A breaking news situation
+      - A daily data check
+      - A collaborative investigation
 
-      Explain the concept of "normalization" and why it matters for data integrity.
+   2. **Data Pipeline Thinking**: You receive updated grant data every month from the state.
+      How would you use sqlite-utils to:
+      - Check if the new data has the expected number of records
+      - Identify any new grantees that weren't in previous months
+      - Flag unusually large grants for editor review
+      - Append new data to your existing database
 
-   2. **Automation Planning**: Imagine this grant data is updated monthly by the state.
-      How would you design an automated pipeline that:
-      - Downloads new data
-      - Validates it for quality issues
-      - Loads it into your database
-      - Alerts you to anomalies
+      Write the actual commands you would use.
 
-      What tools beyond sqlite-utils might you need?
+   3. **Limitations**: What CAN'T sqlite-utils do well? When would you switch to:
+      - A spreadsheet (Excel/Sheets)
+      - A full programming environment (Python/pandas)
+      - A visualization tool
 
-   3. **Comparative Analysis**: Research ONE alternative to sqlite-utils (such as ``csvkit``,
-      ``pandas``, or ``duckdb``). What are its strengths compared to sqlite-utils?
-      When would you choose one over the other?
-
-   When you can discuss database design principles confidently, move on to Act 3!
+   When you feel comfortable querying data from the command line, move on to Act 2!
 
 *****************
-Act 3: Hello Datasette
+Act 2: Hello Datasette
 *****************
 
 .. admonition:: 🤔 Interactive Checkpoint
    :class: tip
 
-   **Before you begin Act 3**: Discuss with your AI assistant:
+   **Before you begin Act 2**: Discuss with your AI assistant:
 
    - What do you think Datasette does based on what we've learned so far?
-   - What does it mean to "publish" data? Who might want to do this?
-   - Have you used any web applications that display data? What were they like?
+   - Why might a journalist want to publish a database on the web?
+   - Who is the audience for a published data tool vs. a published story?
 
 Use pip on the command line to install `Datasette <https://datasette.io/>`_, the Python library we'll use to publish our data.
 
@@ -313,7 +215,7 @@ You can check to see if the library installed using the command-line:
 
 .. code-block:: bash
 
-    $ datasette
+    $ datasette --help
 
 Now let's fire up Datasette's built-in server to run the app locally:
 
@@ -354,432 +256,312 @@ Now try running the server again:
 
     $ datasette serve maryland_grants.db
 
-.. admonition:: 🎯 Deep Dive Challenge
+.. admonition:: 🎯 Deep Dive Challenge: Enrichments and Search
    :class: warning
 
-   **Challenge 1: Plugin Ecosystem Exploration**
+   **Challenge 1: Full-Text Search**
 
-   Datasette's power comes from its plugin ecosystem. Research these questions:
-
-   - Visit https://datasette.io/plugins and find THREE plugins that would be useful for journalism
-   - What does ``datasette-export-notebook`` do? How might this help a data journalist?
-   - What does ``datasette-cluster-map`` do? What kind of data would you need to use it?
-   - Install one additional plugin and demonstrate its functionality
-
-   **Challenge 2: Metadata Configuration**
-
-   Create a ``metadata.yaml`` file to customize your Datasette instance:
-
-   .. code-block:: yaml
-
-       title: Maryland Grant and Loan Database
-       description: FY2009-FY2022 grant and loan data from Maryland's Open Data Portal
-       license: Public Domain
-       license_url: https://opendata.maryland.gov/
-       databases:
-         maryland_grants:
-           tables:
-             grants:
-               description: Individual grant and loan records
-
-   Then run: ``datasette serve maryland_grants.db --metadata metadata.yaml``
-
-   Now explore: What other metadata options are available? How would you add:
-   - Column descriptions
-   - Default sort orders
-   - Hidden columns (for sensitive data)
-
-   **Challenge 3: Understanding the Architecture**
-
-   Using your browser's developer tools (F12), examine the network requests when you:
-   - Load the main page
-   - Sort by a column
-   - Apply a filter
-
-   What format does Datasette use for its API responses? How could a programmer use this API
-   to build applications on top of your data?
-
-.. admonition:: 📝 Substantive Reflection Assignment
-   :class: important
-
-   **Written Reflection** (Discuss thoroughly with your AI assistant):
-
-   1. **Datasette vs. Alternatives**: Research and compare Datasette to:
-      - A traditional database viewer (like DB Browser for SQLite)
-      - A spreadsheet application (like Google Sheets)
-      - A BI tool (like Tableau Public or Metabase)
-
-      Create a comparison matrix: When would you use each tool? What are Datasette's unique strengths?
-
-   2. **Publication Strategy**: You're a data editor at a newsroom. Design a Datasette deployment strategy:
-      - What data should be public vs. internal-only?
-      - How would you handle sensitive columns (names, addresses)?
-      - What authentication options does Datasette offer?
-      - How would you document your data for external users?
-
-   3. **API-First Thinking**: Datasette automatically creates a JSON API. Design a small web application
-      (describe it conceptually) that would consume your grants API to:
-      - Show a searchable directory of grant recipients
-      - Visualize grant trends over time
-      - Alert users when new large grants are added
-
-      What API endpoints would you use? What would the user experience be?
-
-   4. **Plugin Development Ideation**: If you could create a Datasette plugin for journalism, what would it do?
-      Describe the functionality, the problem it solves, and how journalists would use it.
-
-   When you understand Datasette's role in the data publishing ecosystem, move on to Act 4!
-
-*********************
-Act 4: Customizing Datasette
-*********************
-
-.. admonition:: 🤔 Interactive Checkpoint
-   :class: tip
-
-   **Before you begin Act 4**: Discuss with your AI assistant:
-
-   - Look at the Datasette interface. Try clicking on the "Amount" column header to sort.
-   - What do you notice about how the amounts are sorted?
-   - Why do you think this is happening?
-
-Let's look at the summary table - and click on the Amount header, which should sort the amounts. You can see that SQLite doesn't seem to think the values in this columm are numbers;
-instead it is sorting them as text. Let's fix that.
-
-.. admonition:: 💭 Understanding Data Types
-   :class: tip
-
-   **Before fixing**: Ask your AI assistant:
-
-   - What's the difference between storing "100" as text vs. as a number?
-   - What is a "float" data type?
-   - Why does the data type matter for sorting?
-
-Back in the terminal, hit Ctrl-C to stop the local server and change some of the columns in our maryland_grants.db file
-to the correct datatypes:
-
-.. code-block:: bash
-
-    $ sqlite-utils transform maryland_grants.db grants --type Amount float 
-
-Now let's try that server again:
-
-.. code-block:: bash
-
-    $ datasette serve maryland_grants.db
-
-Now you can see that if you sort Amount in descending order the results are arranged correctly.
-
-.. admonition:: 🎯 Deep Dive Challenge
-   :class: warning
-
-   **Challenge 1: Complete Data Type Audit**
-
-   The Amount column was just the beginning. Perform a complete audit:
+   One of Datasette's most powerful features for journalists is full-text search.
+   Let's enable it:
 
    .. code-block:: bash
 
-       $ sqlite-utils schema maryland_grants.db
+       # Stop the server (Ctrl-C) and enable full-text search
+       $ sqlite-utils enable-fts maryland_grants.db grants Grantee "Grant Category" Description --create-triggers
 
-   For EACH column, determine:
-   - What data type is it currently?
-   - What data type SHOULD it be?
-   - What problems might the wrong type cause?
+   Now restart Datasette and try searching for terms like "university" or "health".
 
-   Create a transformation plan and execute it. Hint: Dates stored as text are a common problem.
+   Explore:
+   - How is full-text search different from SQL LIKE queries?
+   - When would a reporter use search vs. filters?
+   - What columns should be searchable for this dataset?
 
-   **Challenge 2: Data Validation**
+   **Challenge 2: Data Enrichment Plugins**
 
-   Now that types are correct, check for data quality issues:
+   Datasette's enrichment plugins can automatically enhance your data. Research these:
 
-   .. code-block:: sql
+   - ``datasette-enrichments``: The base framework for enrichments
+   - ``datasette-enrich-gpt``: Use AI to categorize or summarize text fields
+   - ``datasette-geocode``: Add latitude/longitude to addresses
+   - ``datasette-enrichments-re2``: Extract patterns using regex
 
-       SELECT * FROM grants WHERE Amount < 0;
-       SELECT * FROM grants WHERE Amount IS NULL;
-       SELECT DISTINCT "Fiscal Year" FROM grants ORDER BY "Fiscal Year";
+   Install the enrichments framework:
 
-   (Run these in Datasette's SQL interface)
+   .. code-block:: bash
 
-   - Are there negative amounts? What might they represent?
-   - Are there missing values? How should they be handled?
-   - Are fiscal years formatted consistently?
+       $ datasette install datasette-enrichments
 
-   **Challenge 3: Computed Columns**
+   Discuss with your AI assistant:
+   - How could geocoding grant recipient addresses create a map story?
+   - What text fields in our data could benefit from AI categorization?
+   - What patterns might you extract with regex (dollar amounts, dates, IDs)?
 
-   sqlite-utils can add computed columns. Research how you might:
-   - Add an ``amount_millions`` column that divides Amount by 1,000,000
-   - Add a ``decade`` column that groups years into decades
-   - Add a ``grant_size_category`` column (small/medium/large based on amount thresholds)
+   **Challenge 3: Search-Focused Plugins**
 
-   Implement at least ONE computed column and explain your methodology.
+   Install and explore plugins that enhance discovery:
 
-   **Challenge 4: Transformation Scripting**
+   .. code-block:: bash
 
-   Write a shell script (or describe the steps) that would:
-   1. Download fresh data from the source
-   2. Apply all necessary type transformations
-   3. Add computed columns
-   4. Validate the data
-   5. Start Datasette with appropriate metadata
+       $ datasette install datasette-search-all
 
-   How would you make this reproducible for others?
+   This enables searching across ALL tables at once. Also research:
+
+   - ``datasette-ripgrep``: Search within text columns using powerful regex
+   - ``datasette-similar-records``: Find records that are similar to a selected one
+   - ``datasette-saved-queries``: Save and share common searches
+
+   How would each of these help a reporter on deadline?
 
 .. admonition:: 📝 Substantive Reflection Assignment
    :class: important
 
    **Written Reflection** (Discuss thoroughly with your AI assistant):
 
-   1. **Data Provenance**: You've now modified the original data (type conversions, computed columns).
-      How do you document what you've done? Design a "data diary" or changelog that would help:
-      - Future you understand what transformations were applied
-      - An editor verify your methodology
-      - A reader assess the reliability of your analysis
+   1. **Search Strategy Design**: You're the data editor and reporters will use this Datasette
+      instance to find stories. Design a search strategy:
+      - Which columns should have full-text search enabled?
+      - What "saved queries" would you pre-create for common reporter needs?
+      - How would you train reporters to use search effectively?
 
-   2. **Defensive Data Practices**: What could go wrong when transforming data?
-      - What if a type conversion fails silently (e.g., "N/A" becomes 0)?
-      - How would you detect if the source data format changed?
-      - Design validation checks that should run after every transformation
+   2. **Enrichment Pipeline**: Design an enrichment workflow for grant data:
+      - What enrichments would add the most journalistic value?
+      - In what order would you apply them?
+      - How would you validate that enrichments are accurate?
+      - What are the risks of automated enrichment (e.g., geocoding errors)?
 
-   3. **Inflation and Normalization**: The grants span FY2009-FY2022. A $1M grant in 2009 is not
-      equivalent to $1M in 2022 due to inflation.
-      - Research how you would add inflation-adjusted amounts
-      - What data source would you use for inflation rates?
-      - Why does this matter for comparing grants across years?
+   3. **Publication Ethics**: Datasette makes it easy to publish data. Consider:
+      - Should all grant recipient names be searchable? Why or why not?
+      - What if searching reveals patterns about specific individuals?
+      - How do you balance transparency with potential for misuse?
+      - What documentation should accompany published data?
 
-   4. **Schema Evolution**: Imagine the state adds new columns next year (e.g., "Congressional District").
-      How would you handle:
-      - Adding the new column to your database
-      - Historical records that don't have this data
-      - Maintaining backward compatibility with existing analyses
-
-   When you understand data transformation principles and their implications, move on to Act 5!
+   When you understand how search and enrichments extend Datasette's power, move on to Act 3!
 
 *********************
-Act 5: Exploring Data with Datasette
+Act 3: Exploring Data for Stories
 *********************
 
 .. admonition:: 🤔 Interactive Checkpoint
    :class: tip
 
-   **Before you begin Act 5**: This is your chance to explore! Discuss with your AI assistant:
+   **Before you begin Act 3**: This is where journalism happens! Discuss with your AI assistant:
 
-   - What questions would you like to ask about Maryland grant data?
-   - Look at the Datasette interface - what features haven't we explored yet?
-   - What is a "facet" in data analysis?
+   - What makes data "newsworthy"?
+   - What questions would an editor ask about Maryland grant spending?
+   - How do you distinguish a story from just an interesting fact?
 
-In this final act, we will explore some of Datasette's features, including facets, filters and custom SQL queries.
+In this final act, we will explore Datasette's features through the lens of finding stories - using facets, filters, SQL queries, and the features we've enabled.
 
-.. admonition:: 🔍 Guided Exploration Activities
+.. admonition:: 🔍 Guided Exploration: Finding Stories
    :class: tip
 
-   **Phase 1: Feature Mastery**
+   **Phase 1: The Reporter's Toolkit**
 
-   Work with your AI assistant to master each Datasette feature:
+   Work with your AI assistant to master features that help find stories:
 
-   1. **Facets Deep Dive**:
-      - Apply facets to at least 3 different columns simultaneously
-      - What's the difference between a facet and a filter?
-      - When would you use facet_size to show more/fewer options?
+   1. **Facets for Pattern Discovery**:
+      - Apply facets to "Fiscal Year", "Grant Category", and "Grantee" simultaneously
+      - Facets show you the SHAPE of the data - where is the money concentrated?
+      - Which combinations reveal unexpected patterns?
 
-   2. **Advanced Filtering**:
-      - Create a compound filter (e.g., grants > $1M AND Fiscal Year = 2020)
-      - Use the "contains" filter on text columns
-      - Export your filtered results as CSV and JSON
+   2. **Filters for Hypothesis Testing**:
+      - Create a compound filter: grants > $5M AND Category contains "education"
+      - Filters let you test hunches: "I wonder if..."
+      - Export filtered results for deeper analysis
 
-   3. **SQL Fundamentals** (run these in the SQL interface):
+   3. **Full-Text Search for Leads**:
+      - Search for organization names mentioned in recent news
+      - Search for politically connected terms
+      - Use search to find needles in the haystack
+
+   4. **SQL for Precision Questions**:
 
       .. code-block:: sql
 
-          -- Total grants by fiscal year
-          SELECT "Fiscal Year", COUNT(*) as grant_count, SUM(Amount) as total_amount
+          -- Who are the biggest repeat recipients?
+          SELECT Grantee, COUNT(*) as grant_count, SUM(CAST(Amount AS REAL)) as total
+          FROM grants
+          GROUP BY Grantee
+          HAVING grant_count > 10
+          ORDER BY total DESC;
+
+          -- What's the trend in average grant size?
+          SELECT "Fiscal Year",
+                 COUNT(*) as grants,
+                 AVG(CAST(Amount AS REAL)) as avg_amount,
+                 MAX(CAST(Amount AS REAL)) as max_amount
           FROM grants
           GROUP BY "Fiscal Year"
           ORDER BY "Fiscal Year";
 
-          -- Top 10 grant recipients by total amount
-          SELECT Grantee, COUNT(*) as grants, SUM(Amount) as total
-          FROM grants
-          GROUP BY Grantee
-          ORDER BY total DESC
-          LIMIT 10;
-
-      Modify these queries to answer YOUR questions about the data.
+          -- Find potential outliers (grants much larger than category average)
+          SELECT g.*,
+                 (SELECT AVG(CAST(Amount AS REAL)) FROM grants WHERE "Grant Category" = g."Grant Category") as category_avg
+          FROM grants g
+          WHERE CAST(g.Amount AS REAL) > 5 * (SELECT AVG(CAST(Amount AS REAL)) FROM grants WHERE "Grant Category" = g."Grant Category")
+          ORDER BY CAST(g.Amount AS REAL) DESC;
 
 .. admonition:: 🎯 Deep Dive Challenge: Investigative Data Journalism
    :class: warning
 
-   **Challenge 1: Find a Story**
+   **Challenge 1: The Story Pitch**
 
-   Every dataset has stories. Your task is to find THREE potential news stories in this data.
-   For each story:
-   - Write a one-sentence news hook
-   - Identify the SQL query or filters that reveal the story
-   - List what additional reporting would be needed to verify and complete the story
+   Find THREE potential news stories in this data. For each, provide:
 
-   Example approaches:
-   - Look for outliers (unusually large/small grants)
-   - Look for trends over time (increasing/decreasing funding)
-   - Look for concentration (does one recipient dominate?)
-   - Look for absence (who ISN'T getting grants?)
+   - **Headline**: A compelling one-line summary
+   - **Nut graf**: 2-3 sentences explaining why this matters
+   - **The evidence**: The exact query or filter that reveals this pattern
+   - **The questions**: What would you need to verify before publishing?
+   - **The sources**: Who would you call for comment?
 
-   **Challenge 2: Advanced SQL Analysis**
+   Story angles to consider:
+   - **Concentration**: Is grant money going to the same organizations repeatedly?
+   - **Trends**: Has funding shifted between categories over time?
+   - **Outliers**: Are there unusually large or small grants that warrant explanation?
+   - **Gaps**: Who ISN'T getting grants? What areas are underfunded?
+   - **Timing**: Do grant patterns correlate with political events?
 
-   Write SQL queries to answer these journalism questions:
+   **Challenge 2: The Accountability Query**
+
+   Write SQL to answer these accountability journalism questions:
 
    .. code-block:: sql
 
-       -- Year-over-year change in total grant funding
-       -- (Hint: Use LAG() window function or self-join)
+       -- Which grantees appeared for the first time in the most recent year?
+       -- (New recipients could be a story)
 
-       -- Identify grantees who received funding every single year
+       -- Which grantees received funding in every single year?
+       -- (Long-term relationships could be a story)
 
-       -- Find the grant "category" with the highest average award size
+       -- Which grant categories saw the biggest percentage increase/decrease?
+       -- (Shifting priorities could be a story)
 
-       -- Identify potential duplicate records
+       -- Are there any grantees with very similar names?
+       -- (Potential duplicates or related entities)
 
-   Ask your AI assistant for help with complex SQL syntax, but try to design the logic yourself first.
+   **Challenge 3: The Enterprise Story**
 
-   **Challenge 3: Data Joining Concept**
+   Design a larger investigative project using this data as a starting point:
 
-   This dataset alone tells part of a story. Research what other datasets you could JOIN to enrich it:
+   - What ADDITIONAL data would you need to request via FOIA/public records?
+   - What human sources would you develop?
+   - What other databases could you cross-reference (campaign finance, lobbying, corporate records)?
+   - What's your timeline and publication plan?
+   - How would you bulletproof your methodology?
 
-   - Census data (to normalize grants per capita by region)
-   - Political contribution data (to investigate relationships)
-   - Organizational data (to understand recipient types)
-   - Economic indicators (to contextualize grant amounts)
+   **Challenge 4: The Public Service Tool**
 
-   For ONE of these potential joins:
-   - Find a real dataset online that could be joined
-   - Identify the "join key" that would connect the datasets
-   - Describe what new questions you could answer with the combined data
+   Design how you would publish this Datasette for public use:
 
-   **Challenge 4: Replication Package**
-
-   Create a complete "replication package" that would allow another journalist to:
-   - Reproduce your exact database from raw data
-   - Understand all transformations applied
-   - Run your key analytical queries
-   - Verify your findings
-
-   What files would this package include? Write the README for this package.
+   - What metadata and documentation would you add?
+   - What "canned queries" would help non-technical users?
+   - How would you explain the data's limitations?
+   - What would your "how to use this tool" guide look like?
 
 .. admonition:: 🚀 Extension Activities
    :class: tip
 
    **For Advanced Students** - Choose at least ONE:
 
-   1. **Deploy to the Cloud**: Research how to deploy Datasette to:
-      - Vercel (free tier available)
-      - Google Cloud Run
-      - Fly.io
+   1. **Geographic Analysis**: If your data has location information:
+      - Install ``datasette-cluster-map`` for mapping
+      - Or use enrichments to geocode addresses
+      - What geographic patterns emerge?
 
-      What are the tradeoffs between hosting options?
+   2. **Time-Series Analysis**: Use SQL window functions:
+      - Calculate year-over-year percentage changes
+      - Identify acceleration or deceleration in funding
+      - Find recipients whose funding changed dramatically
 
-   2. **Custom Visualization**: Use ``datasette-vega`` plugin to create a visualization:
-      - Install the plugin
-      - Create a chart showing grant trends over time
-      - Embed the chart in a custom page
+   3. **Network Analysis**: Think about relationships:
+      - Do any grantees share addresses or leadership?
+      - Are there patterns in which agencies give to which recipients?
+      - How would you visualize these connections?
 
-   3. **Datasette Write**: Research ``datasette-write`` and consider:
-      - When would you want users to be able to write to your database?
-      - What security considerations apply?
-      - Design a use case where writable Datasette makes sense
-
-   4. **GraphQL Interface**: Install ``datasette-graphql`` and:
-      - Write a GraphQL query to fetch grant data
-      - Compare GraphQL to REST API - when would you use each?
-
-   5. **Full-Text Search**: Install ``datasette-sqlite-fts`` and:
-      - Enable full-text search on the grants table
-      - Test search functionality
-      - When is full-text search better than SQL LIKE queries?
+   4. **Collaboration Setup**: Make this newsroom-ready:
+      - Create a metadata.yaml with column descriptions
+      - Set up saved queries for common reporter needs
+      - Write documentation for your colleagues
 
 When we're done, you can add your changes to your GitHub repository and push them:
 
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Completed Datasette tutorial with enhanced analysis"
+    $ git commit -m "Completed Datasette tutorial with analysis"
     $ git push origin main
 
 .. admonition:: 🎉 Final Capstone Assignment
    :class: important
 
-   **Capstone Project Proposal**
+   **Capstone: Your Data Project Proposal**
 
-   Before completing this tutorial, prepare a proposal for a complete data journalism project
-   using the skills you've learned. Discuss with your AI assistant and document:
+   Prepare a complete proposal for a data journalism project using these tools.
+   This should be something you could actually pursue. Discuss with your AI assistant:
 
-   **Part 1: Dataset Selection**
-   - Identify a real dataset you want to analyze (government data, public records, etc.)
-   - Why is this dataset newsworthy?
+   **Part 1: The Data**
+   - What dataset will you use? (Be specific - provide URLs if possible)
+   - Why is this newsworthy NOW?
    - What's the source and how reliable is it?
-   - What are the ethical considerations?
+   - What are the limitations you'll need to acknowledge?
 
-   **Part 2: Technical Plan**
-   - What data cleaning/transformation will be needed?
-   - What computed columns would be useful?
-   - What Datasette plugins would enhance the project?
-   - How will you deploy/share the final product?
-
-   **Part 3: Analytical Approach**
+   **Part 2: The Questions**
    - What are your three main research questions?
-   - What SQL queries will help answer them?
-   - What external data might you join?
-   - What are potential pitfalls in interpretation?
+   - What would a "home run" finding look like?
+   - What would a "base hit" finding look like?
+   - What's your null hypothesis (what if there's no story)?
 
-   **Part 4: Publication Strategy**
-   - Who is your audience?
-   - How will you make the data accessible to non-technical readers?
-   - What documentation will you provide?
-   - How will you handle corrections/updates?
+   **Part 3: The Method**
+   - What sqlite-utils commands will you use to load/explore?
+   - What Datasette features (search, facets, enrichments) will help?
+   - What SQL queries will test your hypotheses?
+   - What additional data might you need to join?
+
+   **Part 4: The Journalism**
+   - Who are your human sources?
+   - What documents would you request?
+   - How will you verify what the data suggests?
+   - What's your publication format (story, interactive, database)?
+
+   **Part 5: The Ethics**
+   - Who could be harmed by this story?
+   - What privacy considerations apply?
+   - How will you give subjects opportunity to respond?
+   - What context is essential to include?
 
 .. admonition:: 📝 Comprehensive Reflection
    :class: important
 
-   **Technical Mastery Checklist** (Verify you can explain each):
+   **Skills Checklist** (Verify you can explain each):
 
-   □ Git: staging, committing, pushing, branches, pull requests
-   □ SQLite: tables, data types, queries, joins
-   □ sqlite-utils: insert, transform, schema, computed columns
-   □ Datasette: serve, plugins, metadata, facets, filters, SQL interface
-   □ Data types: text vs. numeric, dates, handling nulls
-   □ Data journalism: finding stories, verification, documentation
+   □ sqlite-utils: insert data, run queries, export formats
+   □ Datasette: serve, explore with facets and filters, SQL interface
+   □ Full-text search: when and how to use it
+   □ Enrichments: what they do and when they're appropriate
+   □ Story-finding: patterns, outliers, trends, gaps
+   □ Verification: what questions to ask before publishing
 
    **Critical Thinking Questions**:
 
-   1. **Limitations**: What CAN'T Datasette do? When would you need different tools?
+   1. **Limitations**: What stories CAN'T you find with this data? What's missing?
 
-   2. **Ethics**: What are the ethical implications of making government data more accessible?
-      - Could bad actors misuse this data?
-      - What responsibility do you have to contextualize data?
-      - When should data NOT be published?
+   2. **Context**: Raw numbers rarely tell the full story. What context would you
+      need to add to any findings from this data?
 
-   3. **Sustainability**: How do you maintain a data project over time?
-      - What happens when source data changes?
-      - How do you handle corrections?
-      - What's your archival strategy?
+   3. **Verification**: You find a surprising pattern. Walk through the steps you'd
+      take before telling your editor you have a story.
 
-   4. **Collaboration**: How would you use these tools in a newsroom team?
-      - How do you share access?
-      - How do you coordinate analysis?
-      - How do you ensure reproducibility?
+   4. **Audience**: How would you explain your methodology to:
+      - Your editor?
+      - A general reader?
+      - A subject of your story who disputes your findings?
 
-   **Next Learning Pathways**:
+   **Continue Learning**:
 
-   Based on what you've learned, discuss with your AI assistant which pathway interests you:
+   - Explore more Datasette instances: https://datasette.io/examples
+   - Read the documentation: https://docs.datasette.io/
+   - Join the community: https://datasette.io/discord
+   - Browse plugins: https://datasette.io/plugins
 
-   - **Data Engineering**: Learn about data pipelines, ETL, Apache Airflow
-   - **Data Visualization**: Learn D3.js, Observable, Datawrapper
-   - **Investigative Methods**: Learn OSINT, document analysis, records requests
-   - **Programming**: Deepen Python/SQL skills, learn pandas, jupyter
-   - **Deployment**: Learn Docker, cloud platforms, CI/CD
-
-   **Share your work**: Your Datasette app is now running! Consider:
-   - Sharing the URL with classmates
-   - Exploring the example Datasette instances at https://datasette.io/examples
-   - Reading the Datasette documentation: https://docs.datasette.io/
-   - Joining the Datasette community: https://datasette.io/discord
-
-   Thank you for working through this tutorial. The skills you've learned are the foundation
-   of modern data journalism. Keep exploring, keep questioning, and keep publishing!
+   The tools you've learned are the foundation of modern data journalism.
+   The real skill is knowing what questions to ask. Keep exploring!
