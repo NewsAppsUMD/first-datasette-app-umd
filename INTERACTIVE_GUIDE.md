@@ -331,20 +331,6 @@ Discuss with your AI assistant which pathway aligns with your career goals.
 - Learning deeply takes time
 - You can save your progress and come back later
 
-## Tips from Past Students
-
-> "At first I wanted to just rush through, but when I slowed down and really engaged with the challenges, I understood so much more!"
-
-> "Don't be embarrassed to ask 'dumb questions' - the AI never judges and the explanations really helped."
-
-> "The story-finding challenges were hard, but they forced me to actually think like a journalist instead of just clicking buttons."
-
-> "Making mistakes and working through errors with the AI taught me more than getting everything right the first time."
-
-> "The capstone project made me realize I could actually do data journalism. It brought everything together."
-
-> "I spent extra time on the SQL challenges and now I use those skills every week in my reporting."
-
 ## Quick Reference
 
 ### Key Commands
