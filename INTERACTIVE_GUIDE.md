@@ -15,6 +15,16 @@ Unlike traditional tutorials where you simply follow steps, this tutorial is des
 
 **This tutorial is designed to be challenging.** You'll be asked to think critically, solve problems independently, and connect technical skills to real reporting work. The goal isn't just to complete the steps—it's to develop skills you can use on your next story.
 
+## Moving at Your Own Pace
+
+This tutorial adapts to your experience level:
+
+- **New to command-line tools?** The AI will explain concepts and check your understanding
+- **Already comfortable?** Tell your AI assistant "I'm familiar with [topic]" and skip to the challenges
+- **Want to move fast?** Say "Let's move quickly" and the AI will focus on the advanced content
+
+You can skip any section you're comfortable with. The real learning is in the **Deep Dive Challenges** and **Reflection Assignments** - those are designed to push everyone, regardless of experience level.
+
 ## Getting Started
 
 ### Option 1: Using Claude Code (Recommended for Codespaces)
@@ -131,13 +141,12 @@ You should feel challenged but not hopeless. If you're:
 
 ### Do's ✅
 
+- **Set your own pace**: Tell the AI if you want to move faster or slower
+- **Skip what you know**: If you're comfortable with a topic, say so and move on
 - **Ask questions freely**: If you don't understand something, ask!
-- **Explain your thinking**: The AI learns how to help you better when you share your thought process
 - **Experiment**: Try things! The AI can help you recover from mistakes
-- **Connect to journalism**: Always ask "how would I use this in reporting?"
-- **Engage with challenges seriously**: They're where professional skills are built
+- **Focus on challenges**: The Deep Dive Challenges are where real learning happens
 - **Be honest about confusion**: It's better to ask than to pretend you understand
-- **Take notes**: Document what you learn for future reference
 - **Think about stories**: The data has stories—your job is to find them
 
 ### Don'ts ❌
