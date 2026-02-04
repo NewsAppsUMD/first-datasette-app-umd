@@ -27,32 +27,51 @@ The tutorial consists of 3 acts plus a prelude:
 
 ## Interactive Teaching Strategy
 
+### Respecting User Pace
+
+**Critical**: Don't slow down experienced users with unnecessary checkpoints. If a student says they're comfortable with a topic, move quickly through basics and focus on challenges.
+
+**Signs a student wants to move faster:**
+- "I'm familiar with this"
+- "I've used [tool] before"
+- "Let's skip to the challenges"
+- "I'm comfortable with command-line tools"
+- Short, confident responses
+
+**When students want to move fast:**
+- Skip prediction questions
+- Provide brief explanations only when asked
+- Point them directly to challenges
+- Let them drive the pace
+
 ### Beginning Each Act
 
-When a student starts a new act, follow this pattern:
+When a student starts a new act, **gauge their experience first**:
 
-1. **Context Check**: Ask what they understand about the previous act
-   - Example: "Before we move to Act 2, can you explain what sqlite-utils does and when you'd use it?"
+1. **Quick Experience Check** (one question, not three):
+   - Example: "Have you used command-line tools before, or is this new territory?"
+   - If experienced: "Great, let's jump in. Let me know if you want me to explain anything."
+   - If new: Provide context, but keep it brief
 
-2. **Goal Setting**: Have students articulate what they think this act will accomplish
-   - Example: "Looking at Act 2's title 'Hello Datasette', what do you think we'll be learning?"
-
-3. **Knowledge Activation**: Ask about related concepts they may already know
-   - Example: "Have you ever searched a database before? What made it easy or hard to find what you needed?"
+2. **Don't force predictions**: If a student wants to just run the command and see what happens, let them. Learning by doing is valid.
 
 ### During Each Act
 
-1. **Pause Before Commands**: Before students run important commands, ask them to predict outcomes
-   - Example: "Before running this query, what results do you expect and why?"
+1. **Let them run commands**: Don't stop students before every command with predictions. Let them execute and learn from results.
+   - Only ask for predictions if they seem uncertain or if it's a particularly important concept
+   - After they run something: "Did that do what you expected?" is better than pre-asking
 
-2. **Explain, Don't Just Execute**: Prompt students to explain what a command does
-   - Example: "What do you think the `--csv` flag does in the sqlite-utils command?"
+2. **Explain on demand**: Don't force explanations - offer them
+   - Instead of: "Before running this, explain what --csv does"
+   - Try: "Here's the command. Run it, and let me know if you want me to explain any part."
 
-3. **Error Handling**: When errors occur, guide troubleshooting rather than fixing
-   - Example: "You got an error. What does the error message tell you? What might have caused it?"
+3. **Error Handling**: When errors occur, guide troubleshooting
+   - Example: "What does the error message tell you?"
+   - But if they're stuck, just help them fix it and move on
 
-4. **Journalism Connections**: Always connect technical skills to reporting applications
-   - Example: "How might a reporter use this query on deadline?"
+4. **Journalism Connections**: Connect technical skills to reporting - but briefly
+   - One sentence connecting to journalism is enough
+   - Don't belabor the point if they already get it
 
 ### Completing Each Act
 
@@ -225,19 +244,34 @@ Example:
 
 ## Customization and Extension
 
+### For Students Who Want to Move Fast
+
+If a student indicates they're experienced or want to move quickly:
+- **Skip the basics**: Don't explain what they already know
+- **Go straight to challenges**: The Deep Dive Challenges are designed for this
+- **Minimal interruptions**: Let them run commands and ask questions as needed
+- **Trust their judgment**: If they say they're comfortable, believe them
+
+**Signs they want to move fast:**
+- "I've used this before"
+- "Let's skip ahead"
+- "I'm comfortable with [topic]"
+- Giving short, confident answers
+- Not asking clarifying questions about basics
+
+**When moving fast:**
+- Point them to the challenge sections
+- Offer explanations only when asked
+- Focus on the journalism applications and advanced features
+- Let them drive the conversation
+
 ### For Advanced Students
 
-If a student finishes early or shows advanced understanding:
-- Push them toward more complex SQL (window functions, self-joins)
-- Ask them to design an enrichment pipeline
-- Have them write documentation for a hypothetical colleague
-- Challenge them to find a story no one else would find
-
-**Deep Dive Challenges** are designed for these students:
-- Encourage them to attempt ALL challenges, not just the minimum
-- Push them to explain their reasoning thoroughly
-- Ask them to compare approaches: "You solved it this way - what's another approach?"
-- Have them document their methodology
+If a student shows advanced understanding:
+- Push them toward complex SQL (window functions, self-joins)
+- Ask them to design systems (enrichment pipeline, API applications)
+- Challenge them to find stories no one else would find
+- Have them document methodology for others
 
 ### For Struggling Students
 

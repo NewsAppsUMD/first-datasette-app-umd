@@ -13,8 +13,11 @@ published your work on the World Wide Web.
 
 .. note::
    **Interactive Learning Mode**: This tutorial is designed to be completed with an AI assistant (Claude Code or GitHub Copilot).
-   The assistant will guide you through the material using a Socratic approach, asking questions to deepen your understanding.
+   The assistant will guide you through the material, asking questions to deepen your understanding.
    Don't hesitate to ask questions, experiment, and explore beyond the basic instructions!
+
+   **Experienced users**: If you're already comfortable with command-line tools, databases, or web servers,
+   tell your AI assistant "I'm comfortable with [topic], let's move quickly" and skip to the challenges.
 
 ******************
 What you will make
@@ -57,14 +60,13 @@ You should create an account at GitHub, if you don't already have one. `The free
 Act 1: Hello sqlite-utils
 **********************
 
-.. admonition:: 🤔 Interactive Checkpoint
+.. admonition:: 💡 Optional: Quick Context Check
    :class: tip
 
-   **Before you begin Act 1**: Discuss with your AI assistant:
+   **New to command-line data tools?** Discuss with your AI assistant:
+   What do you think "sqlite-utils" does? Why might journalists prefer command-line tools over spreadsheets?
 
-   - What do you think "sqlite-utils" does based on its name?
-   - Why might journalists want a fast way to work with data from the command line?
-   - What kinds of data questions do you want to answer with Maryland grant data?
+   **Already comfortable with command-line tools?** Skip ahead to the code below!
 
 Start at the `GitHub URL for this repository <https://github.com/NewsAppsUMD/first-datasette-app-umd>`_
 
@@ -105,16 +107,12 @@ Use wget on the command line to download the CSV file, renaming them using the -
 
 Use sqlite-utils on the command line to load the files into a SQLite database that we'll call maryland_grants.db:
 
-.. admonition:: 🤔 Understanding Commands
-   :class: tip
-
-   **Before running the command**: Ask your AI assistant to explain what each part of the
-   ``sqlite-utils insert`` command does. What does the ``--csv`` flag mean?
-
 .. code-block:: bash
 
     $ cd .. # move up to the main directory
     $ sqlite-utils insert maryland_grants.db grants data/grants.csv --csv
+
+This command creates a new database file (``maryland_grants.db``), creates a table called ``grants``, and loads the CSV data into it. Ask your AI assistant if you want to understand each part of the command.
 
 .. admonition:: 🎯 Deep Dive Challenge: sqlite-utils Power Features
    :class: warning
@@ -239,14 +237,12 @@ Use sqlite-utils on the command line to load the files into a SQLite database th
 Act 2: Hello Datasette
 *****************
 
-.. admonition:: 🤔 Interactive Checkpoint
+.. admonition:: 💡 Optional: Quick Context Check
    :class: tip
 
-   **Before you begin Act 2**: Discuss with your AI assistant:
+   **New to web publishing?** Ask your AI assistant: Why might a journalist want to publish a database on the web? Who's the audience?
 
-   - What do you think Datasette does based on what we've learned so far?
-   - Why might a journalist want to publish a database on the web?
-   - Who is the audience for a published data tool vs. a published story?
+   **Already familiar with web servers and APIs?** Jump straight to the installation below, then focus on the challenges!
 
 Use pip on the command line to install `Datasette <https://datasette.io/>`_, the Python library we'll use to publish our data.
 
@@ -262,12 +258,6 @@ You can check to see if the library installed using the command-line:
 
 Now let's fire up Datasette's built-in server to run the app locally:
 
-.. admonition:: 💭 Think First
-   :class: tip
-
-   **Before starting the server**: Ask your AI assistant what "localhost" means and what happens
-   when we start a server. What do you expect to see?
-
 .. code-block:: bash
 
     $ datasette serve maryland_grants.db
@@ -278,16 +268,7 @@ On the lower right, you should see a small window pop up with the message that y
 
 Click on that button to see your running app.
 
-Oh, that doesn't work. We need to install a specific Datasette tool to work with codespaces.
-
-.. admonition:: 🔍 Troubleshooting Moment
-   :class: tip
-
-   **When something doesn't work**: This is a learning opportunity! Ask your AI assistant:
-
-   - What error did you see (if any)?
-   - Why might the standard Datasette setup not work in Codespaces?
-   - What do you think a "datasette-codespaces" plugin might do?
+Oh, that doesn't work. Codespaces requires a special plugin to handle URL routing:
 
 .. code-block:: bash
 
@@ -454,14 +435,14 @@ Now try running the server again:
 Act 3: Exploring Data for Stories
 *********************
 
-.. admonition:: 🤔 Interactive Checkpoint
+This is where journalism happens. We'll use Datasette's features to find stories in the data.
+
+.. admonition:: 💡 Optional: Story-Finding Mindset
    :class: tip
 
-   **Before you begin Act 3**: This is where journalism happens! Discuss with your AI assistant:
+   **New to data journalism?** Discuss with your AI assistant: What makes data "newsworthy"? How do you distinguish a story from just an interesting fact?
 
-   - What makes data "newsworthy"?
-   - What questions would an editor ask about Maryland grant spending?
-   - How do you distinguish a story from just an interesting fact?
+   **Experienced data journalist?** Jump to the challenges below - they're designed to push your skills!
 
 In this final act, we will explore Datasette's features through the lens of finding stories - using facets, filters, SQL queries, and the features we've enabled.
 
